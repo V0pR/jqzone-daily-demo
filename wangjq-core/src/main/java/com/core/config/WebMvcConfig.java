@@ -1,6 +1,9 @@
 package com.core.config;
 
+import com.fasterxml.jackson.databind.Module;
 import com.google.common.collect.Lists;
+import io.ebean.jackson.JacksonEbeanModule;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
@@ -54,13 +57,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converters.add(new Jaxb2RootElementHttpMessageConverter());
 
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-        // builder.modules(jacksonEbeanModule());
+        builder.modules(jacksonEbeanModule());
         converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
     }
 
-//    @Bean
-//    public Module jacksonEbeanModule() {
-//        return new JacksonEbeanModule();
-//    }
+    @Bean
+    public Module jacksonEbeanModule() {
+        return new JacksonEbeanModule();
+    }
 
 }
