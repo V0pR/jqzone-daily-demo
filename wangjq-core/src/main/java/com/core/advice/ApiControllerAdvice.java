@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.core.exception.BizException;
 import com.core.exception.SessionException;
 import com.core.exception.SignatureException;
+import com.inmeijia.domain.ResultWrapper;
 import io.ebean.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.file.AccessDeniedException;
+
+;
 
 /**
  * Created by rocky on 2017/07/10.
@@ -90,7 +93,8 @@ public class ApiControllerAdvice implements ResponseBodyAdvice {
             body = module;
         }
 
-        return ResultWrapper.valueOf(body);
+        ResultWrapper resultWrapper = ResultWrapper.valueOf(body);
+        return resultWrapper;
     }
 
 

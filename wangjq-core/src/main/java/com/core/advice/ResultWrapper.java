@@ -1,4 +1,4 @@
-package com.core.advice;
+package com.inmeijia.domain;
 
 import java.util.List;
 

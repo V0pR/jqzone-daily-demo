@@ -1,4 +1,4 @@
-package com.core.advice;
+package com.core.config;
 
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Configuration;
@@ -54,7 +54,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converters.add(new Jaxb2RootElementHttpMessageConverter());
 
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-        //builder.modules(jacksonEbeanModule());
+        // builder.modules(jacksonEbeanModule());
         converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
     }
 
