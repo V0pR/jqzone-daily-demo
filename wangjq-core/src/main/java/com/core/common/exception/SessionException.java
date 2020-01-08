@@ -1,7 +1,7 @@
-package com.core.exception;
+package com.core.common.exception;
 
 /**
- * @author longfei.zhao
+ * @author wjq
  * @Description: session异常
  * @date 2017/12/30
  */

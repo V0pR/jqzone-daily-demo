@@ -6,7 +6,6 @@ datasource:
   driver-class-name: com.mysql.cj.jdbc.Driver
 server:
   port: 8080
-  connection-timeout: 3000000
 
 #ebean
 ebean:
@@ -15,6 +14,6 @@ ebean:
       generate: false
       run:  false
     search:
-      packages: com.zqt.domain
+      packages: com.core.domain
   migration:
     run: true

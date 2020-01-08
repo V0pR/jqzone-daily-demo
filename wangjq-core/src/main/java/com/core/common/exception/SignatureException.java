@@ -1,5 +1,8 @@
-package com.core.exception;
+package com.core.common.exception;
 
+/**
+ * @author wjq
+ */
 public class SignatureException extends RuntimeException {
 
     public SignatureException() {

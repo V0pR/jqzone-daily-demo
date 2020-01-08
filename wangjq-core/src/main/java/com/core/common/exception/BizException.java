@@ -1,7 +1,8 @@
-package com.core.exception;
+package com.core.common.exception;
 
 /**
- * Created by rocky on 2017/07/24.
+ * @author rocky
+ * @date 2017/07/24
  */
 public class BizException extends RuntimeException {
 

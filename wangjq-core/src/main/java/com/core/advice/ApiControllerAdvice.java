@@ -1,10 +1,8 @@
 package com.core.advice;
 
 import com.alibaba.fastjson.JSONObject;
-import com.core.exception.BizException;
-import com.core.exception.SessionException;
-import com.core.exception.SignatureException;
-import com.inmeijia.domain.ResultWrapper;
+import com.core.common.dto.ResultWrapper;
+import com.core.common.exception.BizException;
 import io.ebean.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.SessionException;
 import java.nio.file.AccessDeniedException;
+import java.security.SignatureException;
 
 ;
 

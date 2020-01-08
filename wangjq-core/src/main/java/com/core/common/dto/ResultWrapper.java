@@ -1,4 +1,4 @@
-package com.inmeijia.domain;
+package com.core.common.dto;
 
 import java.util.List;
 

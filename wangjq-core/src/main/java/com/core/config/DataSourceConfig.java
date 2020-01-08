@@ -1,4 +1,4 @@
-package com.core.advice;
+package com.core.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

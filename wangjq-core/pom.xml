@@ -63,15 +63,27 @@
 		<!--Ebean-->
 		<dependency>
 			<groupId>io.ebean</groupId>
-			<artifactId>ebean</artifactId>
+			<artifactId>querybean-generator</artifactId>
 			<version>${ebean.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.ebean</groupId>
+			<artifactId>ebean-spring-txn</artifactId>
+			<version>11.10.4</version>
 		</dependency>
 		<dependency>
 			<groupId>io.ebean</groupId>
 			<artifactId>ebean-querybean</artifactId>
 			<version>${ebean.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>io.ebean</groupId>
+			<artifactId>ebean</artifactId>
+			<version>${ebean.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>io.ebean</groupId>
 			<artifactId>ebean-jackson</artifactId>
@@ -81,6 +93,7 @@
 			<groupId>io.ebean.test</groupId>
 			<artifactId>ebean-test-config</artifactId>
 			<version>${ebean.version}</version>
+			<scope>test</ scope>
 		</dependency>
 
 		<dependency>

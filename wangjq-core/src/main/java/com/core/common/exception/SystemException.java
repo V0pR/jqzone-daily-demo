@@ -1,4 +1,4 @@
-package com.core.exception;
+package com.core.common.exception;
 
 /**
  * * @Title: SystemException
