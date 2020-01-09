@@ -1,9 +1,11 @@
 package com.core.domain;
 
 import com.core.common.base.BaseDomain;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @author wjq
@@ -13,7 +15,38 @@ import javax.persistence.Table;
  * @Description: 用户
  * @date 2020/1/9 16:58
  */
+@Data
 @Entity
-@Table(name = "wj_user", uniqueConstraints = {})
+@Table(name = "wj_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "phoneNumber"})})
 public class User extends BaseDomain {
+
+    /**
+     * 用户
+     */
+    private String userName;
+
+    /**
+     * 真实姓名
+     */
+    private String realName;
+
+    /**
+     * 电话
+     */
+    private String phoneNumber;
+
+    /**
+     * 账号
+     */
+    private String account;
+
+    /**
+     * salt
+     */
+    private String salt;
+
+    /**
+     * 密码
+     */
+    private String password;
 }

@@ -7,6 +7,10 @@ datasource:
 server:
   port: 8080
 
+logging:
+  file:
+    path: ./logs
+
 #ebean
 ebean:
   db:
