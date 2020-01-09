@@ -5,6 +5,18 @@
 
     <property name="LOG_PATH" value="${LOG_PATH:-./logs}"/>
 
+    <!-- 彩色日志 -->
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+
     <appender name="APP_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
         <encoder>
@@ -74,30 +86,30 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="io.ebean.DDL" level="INFO"/>
+    <logger name="io.ebean.DDL" level="TRACE"/>
 
     <!-- SQL and bind values -->
-    <logger name="io.ebean.SQL" level="INFO"/>
+    <logger name="io.ebean.SQL" level="TRACE"/>
 
     <!-- Transaction Commit and Rollback events -->
-    <logger name="io.ebean.TXN" level="INFO"/>
+    <logger name="io.ebean.TXN" level="TRACE"/>
 
     <!-- Summary level details -->
-    <logger name="io.ebean.SUM" level="INFO"/>
+    <logger name="io.ebean.SUM" level="TRACE"/>
 
     <!-- L2 logging -->
-    <logger name="io.ebean.cache.QUERY" level="INFO"/>
-    <logger name="io.ebean.cache.BEAN" level="INFO"/>
-    <logger name="io.ebean.cache.COLL" level="INFO"/>
-    <logger name="io.ebean.cache.NATKEY" level="INFO"/>
+    <logger name="io.ebean.cache.QUERY" level="TRACE"/>
+    <logger name="io.ebean.cache.BEAN" level="TRACE"/>
+    <logger name="io.ebean.cache.COLL" level="TRACE"/>
+    <logger name="io.ebean.cache.NATKEY" level="TRACE"/>
 
     <!-- Elastic logging -->
-    <logger name="io.ebean.ELA" level="INFO"/>
-    <logger name="io.ebean.ELQ" level="INFO"/>
-    <logger name="io.ebean.BULK" level="ERROR"/>
+    <logger name="io.ebean.ELA" level="TRACE"/>
+    <logger name="io.ebean.ELQ" level="TRACE"/>
+    <logger name="io.ebean.BULK" level="TRACE"/>
 
     <!-- Docker commands for starting test containers  -->
-    <logger name="io.ebean.docker" level="INFO"/>
+    <logger name="io.ebean.docker" level="TRACE"/>
 
     <!--default-->
     <springProfile name="default">

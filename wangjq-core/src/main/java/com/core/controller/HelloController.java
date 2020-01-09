@@ -1,5 +1,7 @@
 package com.core.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("hello")
 public class HelloController {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @GetMapping("/up")
     public String up() {
+        logger.info("好好学习，天天向上！");
         return "好好学习，天天向上！";
     }
 }
