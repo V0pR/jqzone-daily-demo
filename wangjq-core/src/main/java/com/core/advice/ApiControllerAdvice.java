@@ -93,8 +93,8 @@ public class ApiControllerAdvice implements ResponseBodyAdvice {
             body = module;
         }
 
-        ResultWrapper resultWrapper = ResultWrapper.valueOf(body);
-        return resultWrapper;
+        //todo 此处可对返回的结果进行操作  example：加密等
+        return ResultWrapper.valueOf(body);
     }
 
 
