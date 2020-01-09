@@ -1,8 +1,8 @@
 package com.core.common.exception;
 
 /**
- * @author rocky
- * @date 2017/07/24
+ * @author wjq
+ * @date 2020-01-09 16:56:11
  */
 public class BizException extends RuntimeException {
 

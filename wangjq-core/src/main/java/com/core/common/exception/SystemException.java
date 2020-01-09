@@ -3,11 +3,9 @@ package com.core.common.exception;
 /**
  * * @Title: SystemException
  *
- * @author rocky.lxl
- * @version 1.0
- * @Package com.inmeijia.exception
+ * @author wjq
  * @Description: 系统异常
- * @date 2017/11/06 16:11
+ * @date 2020-01-09 16:56:38
  */
 public class SystemException extends RuntimeException {
 

@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
  * @version 1.0
  * @Title: Base64Utils
  * @Package com.zqt.security
- * @Description: base64加密
+ * @Description: base64加解密
  * @date 2020/1/3 17:59
  */
 public class Base64Utils {

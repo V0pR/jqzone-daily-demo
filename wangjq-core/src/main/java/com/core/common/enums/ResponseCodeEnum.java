@@ -4,7 +4,7 @@ package com.core.common.enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
- * @author rocky.lxl
+ * @author wjq
  * @version 1.0
  * @Package com.zqt.common.dto
  * @Description: copy from org.springframework.http.HttpStatus

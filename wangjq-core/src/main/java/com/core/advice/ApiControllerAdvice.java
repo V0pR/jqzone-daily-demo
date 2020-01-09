@@ -20,10 +20,8 @@ import javax.websocket.SessionException;
 import java.nio.file.AccessDeniedException;
 import java.security.SignatureException;
 
-;
-
 /**
- * Created by rocky on 2017/07/10.
+ * @author wjq
  */
 @RestControllerAdvice(annotations = {RestController.class})
 public class ApiControllerAdvice implements ResponseBodyAdvice {

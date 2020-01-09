@@ -12,11 +12,11 @@ import java.sql.SQLException;
 /**
  * * @Title: DataSourceConfig
  *
- * @author rocky.lxl
+ * @author wjq
  * @version 1.0
  * @Package com.inmeijia.config
  * @Description: DataSourceConfig
- * @date 2019/6/11 11:57 AM
+ * @date 2020-01-09 16:57:07
  */
 @Configuration
 public class DataSourceConfig {

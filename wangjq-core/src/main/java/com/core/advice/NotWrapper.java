@@ -10,7 +10,8 @@ import java.lang.annotation.Target;
  * Annotation that do not NotWrapper response return value;
  * <p>
  * <p>
- * Created by rocky on 2017/07/27.
+ *
+ * @author wjq
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

@@ -3,7 +3,7 @@ package com.core.common.dto;
 import java.util.List;
 
 /**
- * Created by rocky on 2017/07/11.
+ * @author wjq
  * <p>
  * API响应结果包装类
  */

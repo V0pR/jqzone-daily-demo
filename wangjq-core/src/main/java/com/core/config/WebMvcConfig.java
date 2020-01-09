@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rocky on 2017/07/20.
+ * @author wjq
  */
 @Configuration
 @EnableWebMvc
@@ -55,7 +55,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 
     /**
-     * 草 终于解决了返回 String 转 object 的问题！！！！
+     * 草 终于解决了返回 String 转 object 失败切乱码的问题！！！！
      *
      * @return
      */
