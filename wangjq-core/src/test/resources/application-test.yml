@@ -24,3 +24,12 @@ ebean:
       packages: com.zqt.domain
   migration:
     run: false
+
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+  messages:
+    encoding: UTF-8

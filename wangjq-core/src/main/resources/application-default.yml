@@ -17,3 +17,12 @@ ebean:
       packages: com.core.domain
   migration:
     run: true
+
+#spring:
+#  http:
+#    encoding:
+#      charset: utf-8
+#      force: true
+#      enabled: true
+#  messages:
+#    encoding: UTF-8

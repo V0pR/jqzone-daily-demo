@@ -21,7 +21,7 @@ public class ResultWrapper<T> {
     }
 
     public static <T> ResultWrapper valueOf(T module) {
-        return new ResultWrapper(module, 200, "执行成功");
+        return new ResultWrapper(module, 200, "success");
     }
 
     public ResultWrapper(T module, Integer code, String message) {
