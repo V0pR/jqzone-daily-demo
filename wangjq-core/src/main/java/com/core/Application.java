@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * @author wjq
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication(scanBasePackages = {"com.core"})
 @EnableScheduling
 @EnableWebMvc
-public class Application {
+public class Application extends WebMvcConfigurerAdapter {
 
     private EbeanServer ebeanServer = Ebean.getDefaultServer();
 
