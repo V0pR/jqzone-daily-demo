@@ -70,6 +70,7 @@ public class EbeanFactoryBean implements FactoryBean<EbeanServer> {
         DbMigrationConfig dbMigrationConfig = new DbMigrationConfig();
         dbMigrationConfig.setRunMigration(migrationRun);
         dbMigrationConfig.setPlatform(Platform.MYSQL);
+        //dbMigrationConfig.setPatchResetChecksumOn("5.66");
         config.setMigrationConfig(dbMigrationConfig);
 
         config.setDefaultServer(true);

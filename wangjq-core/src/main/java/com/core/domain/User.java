@@ -1,6 +1,7 @@
 package com.core.domain;
 
 import com.core.common.base.BaseDomain;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -16,8 +17,9 @@ import javax.persistence.UniqueConstraint;
  * @date 2020/1/9 16:58
  */
 @Data
+@Builder
 @Entity
-@Table(name = "wj_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "phoneNumber"})})
+@Table(name = "wj_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "phone_number"})})
 public class User extends BaseDomain {
 
     /**

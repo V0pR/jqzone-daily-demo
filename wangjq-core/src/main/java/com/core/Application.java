@@ -1,12 +1,12 @@
 package com.core;
 
-import io.ebean.Ebean;
 import io.ebean.EbeanServer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author wjq
@@ -16,16 +16,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Description:
  * @date 2020/1/8 11:27
  */
-@SpringBootApplication(scanBasePackages = {"com.core"})
+@SpringBootApplication
 @EnableScheduling
 @EnableWebMvc
-public class Application extends WebMvcConfigurerAdapter {
-
-    private EbeanServer ebeanServer = Ebean.getDefaultServer();
+public class Application implements WebMvcConfigurer {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
+    @Autowired
+    private static EbeanServer server;
 
 }
 

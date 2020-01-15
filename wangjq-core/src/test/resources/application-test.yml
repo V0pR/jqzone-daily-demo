@@ -21,7 +21,7 @@ ebean:
       generate: false
       run: false
     search:
-      packages: com.zqt.domain
+      packages: com.core.domain
   migration:
     run: false
 
