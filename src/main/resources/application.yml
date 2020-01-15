@@ -22,7 +22,12 @@ ebean:
   migration:
     run: true
 
-#spring:
+# security
+spring:
+  security:
+    user:
+      password: admin
+      name: admin
 #  http:
 #    encoding:
 #      charset: utf-8

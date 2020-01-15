@@ -20,7 +20,7 @@ public class HelloController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping("/up")
+    @GetMapping("/ ")
     public String up() {
         logger.info("好好学习，天天向上！");
         return "好好学习，天天向上！";
