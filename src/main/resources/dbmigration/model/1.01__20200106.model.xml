@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
     <changeSet type="apply">
-        <createTable name="wj_user" pkName="pk_wj_user">
+        <createTable name="role" pkName="pk_role">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="name" type="varchar"/>
+            <column name="description" type="TEXT"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+            <column name="who_created" type="varchar" notnull="true"/>
+            <column name="who_modified" type="varchar" notnull="true"/>
+            <column name="deleted" type="boolean" defaultValue="false" notnull="true"/>
+        </createTable>
+        <createTable name="user" pkName="pk_user">
             <column name="id" type="bigint" primaryKey="true"/>
             <column name="user_name" type="varchar"/>
             <column name="real_name" type="varchar"/>
@@ -9,16 +20,28 @@
             <column name="phone_number" type="varchar"/>
             <column name="email" type="varchar"/>
             <column name="account" type="varchar"/>
-            <column name="salt" type="varchar"/>
             <column name="password" type="varchar"/>
-            <column name="status" type="integer" checkConstraint="check ( status in (0,1,3,4))" checkConstraintName="ck_wj_user_status"/>
+            <column name="status" type="integer" checkConstraint="check ( status in (0,1,3,4))" checkConstraintName="ck_user_status"/>
             <column name="version" type="bigint" notnull="true"/>
             <column name="when_created" type="timestamp" notnull="true"/>
             <column name="when_modified" type="timestamp" notnull="true"/>
             <column name="who_created" type="varchar" notnull="true"/>
             <column name="who_modified" type="varchar" notnull="true"/>
             <column name="deleted" type="boolean" defaultValue="false" notnull="true"/>
-            <uniqueConstraint name="uq_wj_user_account_phone_number" columnNames="account,phone_number" oneToOne="false" nullableColumns="account,phone_number"/>
+            <uniqueConstraint name="uq_user_account" columnNames="account" oneToOne="false" nullableColumns="account"/>
+            <uniqueConstraint name="uq_user_phone_number" columnNames="phone_number" oneToOne="false" nullableColumns="phone_number"/>
+        </createTable>
+        <createTable name="user_role_ref" pkName="pk_user_role_ref">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="user_id" type="bigint" notnull="true" references="user.id" foreignKeyName="fk_user_role_ref_user_id" foreignKeyIndex="ix_user_role_ref_user_id"/>
+            <column name="role_id" type="bigint" notnull="true" references="role.id" foreignKeyName="fk_user_role_ref_role_id" foreignKeyIndex="ix_user_role_ref_role_id"/>
+            <column name="remark" type="varchar"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+            <column name="who_created" type="varchar" notnull="true"/>
+            <column name="who_modified" type="varchar" notnull="true"/>
+            <uniqueConstraint name="uq_user_role_ref_user_id_role_id" columnNames="user_id,role_id" oneToOne="false" nullableColumns=""/>
         </createTable>
     </changeSet>
 </migration>

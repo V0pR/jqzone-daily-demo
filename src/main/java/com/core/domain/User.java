@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint;
 @Data
 @Builder
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "phone_number"})})
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account"}), @UniqueConstraint(columnNames = {"phone_number"})})
 public class User extends BaseDomain {
 
 
