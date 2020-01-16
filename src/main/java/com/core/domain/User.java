@@ -1,6 +1,7 @@
 package com.core.domain;
 
 import com.core.common.base.BaseDomain;
+import com.core.domain.enums.MJUserStatusEnum;
 import lombok.Builder;
 import lombok.Data;
 
@@ -33,9 +34,19 @@ public class User extends BaseDomain {
     private String realName;
 
     /**
+     * 头像
+     */
+    private String avatarUrl;
+
+    /**
      * 电话
      */
     private String phoneNumber;
+
+    /**
+     * 邮箱
+     */
+    private String email;
 
     /**
      * 账号
@@ -51,4 +62,9 @@ public class User extends BaseDomain {
      * 密码
      */
     private String password;
+
+    /**
+     * status
+     */
+    private MJUserStatusEnum status;
 }

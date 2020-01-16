@@ -40,16 +40,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-//        stringConverter.setWriteAcceptCharset(false);
         ArrayList<MediaType> mediaTypes = Lists.newArrayList(MediaType.TEXT_PLAIN, MediaType.TEXT_XML, MediaType.APPLICATION_XML);
         stringConverter.setSupportedMediaTypes(mediaTypes);
-//
-//        converters.add(new ByteArrayHttpMessageConverter());
-//        converters.add(stringConverter);
-//        converters.add(new ResourceHttpMessageConverter());
-//        converters.add(new SourceHttpMessageConverter<Source>());
-//        converters.add(new AllEncompassingFormHttpMessageConverter());
-//        converters.add(new Jaxb2RootElementHttpMessageConverter());
         converters.add(fastJsonHttpMessageConverter());
     }
 
