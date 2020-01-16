@@ -2,6 +2,7 @@ package com.core.domain;
 
 import com.core.common.base.BaseDomain;
 import com.core.domain.enums.MJUserStatusEnum;
+import com.core.domain.finder.UserFinder;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,8 +21,11 @@ import javax.persistence.UniqueConstraint;
 @Data
 @Builder
 @Entity
-@Table(name = "wj_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "phone_number"})})
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "phone_number"})})
 public class User extends BaseDomain {
+
+
+    public static final UserFinder finder = new UserFinder();
 
     /**
      * 用户
@@ -52,11 +56,6 @@ public class User extends BaseDomain {
      * 账号
      */
     private String account;
-
-    /**
-     * salt
-     */
-    private String salt;
 
     /**
      * 密码

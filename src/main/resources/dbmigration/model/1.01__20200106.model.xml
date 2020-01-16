@@ -5,18 +5,20 @@
             <column name="id" type="bigint" primaryKey="true"/>
             <column name="user_name" type="varchar"/>
             <column name="real_name" type="varchar"/>
+            <column name="avatar_url" type="varchar"/>
             <column name="phone_number" type="varchar"/>
+            <column name="email" type="varchar"/>
             <column name="account" type="varchar"/>
             <column name="salt" type="varchar"/>
             <column name="password" type="varchar"/>
+            <column name="status" type="integer" checkConstraint="check ( status in (0,1,3,4))" checkConstraintName="ck_wj_user_status"/>
             <column name="version" type="bigint" notnull="true"/>
             <column name="when_created" type="timestamp" notnull="true"/>
             <column name="when_modified" type="timestamp" notnull="true"/>
             <column name="who_created" type="varchar" notnull="true"/>
             <column name="who_modified" type="varchar" notnull="true"/>
             <column name="deleted" type="boolean" defaultValue="false" notnull="true"/>
-            <uniqueConstraint name="uq_wj_user_account_phone_number" columnNames="account,phone_number" oneToOne="false"
-                              nullableColumns="account,phone_number"/>
+            <uniqueConstraint name="uq_wj_user_account_phone_number" columnNames="account,phone_number" oneToOne="false" nullableColumns="account,phone_number"/>
         </createTable>
     </changeSet>
 </migration>

@@ -39,4 +39,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
        super.configure(auth);
     }
+
 }
