@@ -22,12 +22,13 @@ ebean:
   migration:
     run: true
 
-# security
+
 spring:
-  security:
-    user:
-      password: admin
-      name: admin
+  #thymeleaf
+  hymeleaf:
+    mode: html
+    cache: false
+
 #  http:
 #    encoding:
 #      charset: utf-8

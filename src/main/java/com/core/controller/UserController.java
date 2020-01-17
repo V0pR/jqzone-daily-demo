@@ -3,6 +3,7 @@ package com.core.controller;
 import com.core.domain.User;
 import com.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -57,6 +58,11 @@ public class UserController {
 
     }
 
+
+    public static void main(String[] args) {
+        SCryptPasswordEncoder sCryptPasswordEncoder =  new SCryptPasswordEncoder();
+        System.err.println(sCryptPasswordEncoder.encode("123"));
+    }
 
 
 

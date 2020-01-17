@@ -30,5 +30,10 @@ public class UserFinder extends Finder<Long, User> {
         return this.queryBean()
                 .id.eq(userId).findOne();
     }
+
+    public User findByAccount(String account) {
+        return this.queryBean()
+                .account.eq(account).findOne();
+    }
 }
 

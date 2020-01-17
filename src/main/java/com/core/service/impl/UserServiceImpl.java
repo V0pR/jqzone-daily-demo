@@ -1,11 +1,18 @@
-package com.core.service;
+package com.core.service.impl;
 
 import com.core.common.base.BaseService;
 import com.core.common.exception.BizException;
 import com.core.domain.User;
+import com.core.service.UserService;
+import io.ebeaninternal.server.lib.util.Str;
 import org.apache.commons.lang3.StringUtils;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * @author wjq
@@ -17,6 +24,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends BaseService<User> implements UserService {
+
+
+    @Override
+    public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
+        User originUser = User.finder.findByAccount(account);
+        if (!Optional.ofNullable(originUser).isPresent()) {
+            throw new BizException("账号不存在");
+        }
+
+        return User.builder()
+                .account(originUser.getAccount())
+                .password(originUser.getPassword())
+                .avatarUrl(originUser.getAvatarUrl())
+                .build();
+    }
 
     @Override
     public User create(User user) {
@@ -40,7 +62,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     public void update(User entity) {
-         super.update(entity);
+        super.update(entity);
     }
 
     private String hash(String text) {

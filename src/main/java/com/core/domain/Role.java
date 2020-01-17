@@ -1,6 +1,8 @@
 package com.core.domain;
 
 import com.core.common.base.BaseDomain;
+import com.core.domain.finder.RoleFinder;
+import com.core.domain.finder.UserFinder;
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,6 +23,8 @@ import javax.persistence.Table;
 @Data
 @Table(name = "role")
 public class Role extends BaseDomain {
+
+    public static final RoleFinder finder = new RoleFinder();
 
     /**
      * 角色名称

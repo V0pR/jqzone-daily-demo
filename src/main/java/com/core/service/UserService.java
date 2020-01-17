@@ -1,6 +1,7 @@
 package com.core.service;
 
 import com.core.domain.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * @author wjq
@@ -10,7 +11,7 @@ import com.core.domain.User;
  * @Description:
  * @date 2020/1/10 14:06
  */
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     /**
      * create

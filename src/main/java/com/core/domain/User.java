@@ -5,10 +5,13 @@ import com.core.domain.enums.MJUserStatusEnum;
 import com.core.domain.finder.UserFinder;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import java.util.Collection;
 
 /**
  * @author wjq
@@ -22,7 +25,7 @@ import javax.persistence.UniqueConstraint;
 @Builder
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"account"}), @UniqueConstraint(columnNames = {"phone_number"})})
-public class User extends BaseDomain {
+public class User extends BaseDomain implements UserDetails {
 
 
     public static final UserFinder finder = new UserFinder();
@@ -66,4 +69,34 @@ public class User extends BaseDomain {
      * status
      */
     private MJUserStatusEnum status;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
