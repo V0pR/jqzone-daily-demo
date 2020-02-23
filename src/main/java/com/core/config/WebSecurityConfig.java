@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 /**
@@ -31,12 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     UserService userService;
 
 
-    /**
-     * 认证
-     *
-     * @param auth
-     * @throws Exception
-     */
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(new PasswordEncoder() {
@@ -52,12 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         });
     }
 
-    /**
-     * 授权
-     *
-     * @param http
-     * @throws Exception
-     */
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
