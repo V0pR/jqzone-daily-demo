@@ -4,8 +4,7 @@ import com.core.common.base.BaseDomain;
 import com.core.domain.enums.CoffeeStatus;
 import lombok.Builder;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
@@ -51,10 +50,16 @@ public class Coffee extends BaseDomain {
     /**
      * 商品类型
      */
+    @ManyToOne(targetEntity = Category.class)
+    @JoinColumn(name = "category_id")
+    @Column(nullable = false)
     private Category category;
 
     /**
      * 品牌
      */
+    @ManyToOne(targetEntity = Brand.class)
+    @JoinColumn(name = "brand_id")
+    @Column(nullable = false)
     private Brand brand;
 }

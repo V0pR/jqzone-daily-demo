@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+    <changeSet type="apply">
+        <addColumn tableName="coffee">
+            <column name="category_id" type="bigint" references="category.id" foreignKeyName="fk_coffee_category_id" foreignKeyIndex="ix_coffee_category_id"/>
+            <column name="brand_id" type="bigint" references="brand.id" foreignKeyName="fk_coffee_brand_id" foreignKeyIndex="ix_coffee_brand_id"/>
+        </addColumn>
+    </changeSet>
+</migration>
