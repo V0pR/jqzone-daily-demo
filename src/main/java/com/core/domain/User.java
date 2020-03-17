@@ -2,10 +2,12 @@ package com.core.domain;
 
 import com.core.common.base.BaseDomain;
 import com.core.domain.enums.UserStatus;
+import com.core.domain.finder.UserFinder;
 import lombok.Builder;
 import lombok.Data;
 
 import javax.naming.Name;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -19,8 +21,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
+@Data
 @Builder
 public class User extends BaseDomain {
+
+    public static final UserFinder finder = new UserFinder();
 
     /**
      * 名字
@@ -39,6 +44,11 @@ public class User extends BaseDomain {
      * 账号
      */
     private String account;
+
+    /**
+     * 密码
+     */
+    private String password;
     /**
      * 电话
      */

@@ -3,6 +3,7 @@ package com.core.domain;
 import com.core.common.base.BaseDomain;
 import com.core.domain.enums.CoffeeStatus;
 import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 @Entity
 @Builder
 @Table
+@Data
 public class Coffee extends BaseDomain {
 
 

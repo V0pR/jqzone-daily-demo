@@ -10,26 +10,24 @@ import javax.persistence.Table;
 /**
  * @author wangj
  * @version 1.0
- * @Title: Brand
+ * @Title: Role
  * @Package com.core.domain
  * @Description: TODO
- * @date 2020/3/13 23:50
+ * @date 2020/3/17 22:22
  */
 @Entity
 @Table
 @Data
 @Builder
-public class Brand extends BaseDomain {
+public class Role extends BaseDomain {
 
     /**
-     * 品牌名称
+     * 名字
      */
     private String name;
 
     /**
-     * 品牌编码
+     * code
      */
     private String code;
-
-
 }

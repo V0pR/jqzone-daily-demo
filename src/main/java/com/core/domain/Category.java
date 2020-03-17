@@ -2,6 +2,7 @@ package com.core.domain;
 
 import com.core.common.base.BaseDomain;
 import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
+@Data
 @Builder
 public class Category extends BaseDomain {
 

@@ -47,6 +47,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+        <!-- 引入security与thymeleaf的整合依赖 -->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>3.0.4.RELEASE</version>
+        </dependency>
 
 
         <!--mysql-->
@@ -113,13 +119,6 @@
             <version>${ebean.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>

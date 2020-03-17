@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "coffee_order")
 @Builder
+@Data
 public class CoffeeOrder extends BaseDomain {
 
     /**
