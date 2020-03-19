@@ -6,10 +6,7 @@ import com.core.domain.finder.UserRoleRefFinder;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author wangj
@@ -20,7 +17,7 @@ import javax.persistence.Table;
  * @date 2020/3/17 22:24
  */
 @Entity
-@Table
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","role_id"}))
 @Builder
 @Data
 public class UserRoleRef extends BaseRefDomain {
@@ -31,7 +28,7 @@ public class UserRoleRef extends BaseRefDomain {
      * 用户
      */
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     /**
@@ -39,7 +36,7 @@ public class UserRoleRef extends BaseRefDomain {
      */
 
     @ManyToOne(targetEntity = Role.class)
-    @JoinColumn(name = "role_id",nullable = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
 

@@ -25,12 +25,17 @@ public class LoginController {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         log.info("当前登陆用户：" + name);
 
-        return "home.html";
+        return "home";
     }
 
     @RequestMapping("/login")
     public String showLogin() {
-        return "login.html";
+        return "login";
+    }
+
+    @RequestMapping("/hello")
+    public String hello(){
+        return "hello";
     }
 
     @RequestMapping("/admin")

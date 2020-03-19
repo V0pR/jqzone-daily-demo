@@ -24,7 +24,7 @@ public class GenerateDbMigration {
 
         DbMigration dbMigration = DbMigration.create();
         dbMigration.setPlatform(Platform.MYSQL);
-        dbMigration.setVersion("1.03");
+        dbMigration.setVersion("1.04");
         dbMigration.setName("20200318");
         dbMigration.setStrictMode(true);
         dbMigration.generateMigration();

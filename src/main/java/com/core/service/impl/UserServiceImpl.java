@@ -34,6 +34,8 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     HttpServletRequest request;
 
 
+
+
     @Override
     public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
         log.info("loadUserByUsername {}", account);
