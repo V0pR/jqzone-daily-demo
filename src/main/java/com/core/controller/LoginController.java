@@ -1,6 +1,8 @@
 package com.core.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController("loginController")
 @RequestMapping("login")
-@Slf4j
 public class LoginController {
+    Logger logger =  LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
     public String showHome() {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        log.info("当前登陆用户：" + name);
+        logger.info("当前登陆用户：" + name);
 
         return "home";
     }
