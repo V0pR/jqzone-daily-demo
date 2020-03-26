@@ -27,7 +27,7 @@ public class Application implements WebMvcConfigurer {
     }
 
     @Autowired
-    private static EbeanServer server;
+    private static EbeanServer ebeanServer;
 
 }
 
