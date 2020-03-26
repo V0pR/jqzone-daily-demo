@@ -32,6 +32,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
 
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers(
+                        "/js/**",
+                        "/css/**",
+                        "/img/**",
+                        "/webjars/**");
+    }
+
     /**
      * 定义认证规则
      *
@@ -64,33 +74,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                //请求路径"/"允许访问
                 .antMatchers("/").permitAll()
+                //其它请求都需要校验才能访问
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                //定义登录的页面"/login"，允许访问
                 .loginPage("/login")
                 .permitAll()
                 .and()
+                //默认的"/logout", 允许访问
                 .logout()
                 .permitAll();
 
-
-        // 关闭CSRF跨域
-        http.csrf().disable();
+//        // 关闭CSRF跨域
+//        http.csrf().disable();
     }
 
-    @Bean
-    public SCryptPasswordEncoder sCryptPasswordEncoder() {
-        return new SCryptPasswordEncoder();
-    }
+    //    @Bean
+//    public SCryptPasswordEncoder sCryptPasswordEncoder() {
+//        return new SCryptPasswordEncoder();
+//    }
 
-    /**
-     * 如果要设置cookie过期时间或其他相关配置，请在下方自行配置
-     */
-    private TokenBasedRememberMeServices getRememberMeServices() {
-        TokenBasedRememberMeServices services = new TokenBasedRememberMeServices(rememberMeKey, userService);
-        services.setCookieName("remember-cookie");
-        services.setTokenValiditySeconds(100); // 默认14天
-        return services;
-    }
+//    /**
+//     * 如果要设置cookie过期时间或其他相关配置，请在下方自行配置
+//     */
+//    private TokenBasedRememberMeServices getRememberMeServices() {
+//        TokenBasedRememberMeServices services = new TokenBasedRememberMeServices(rememberMeKey, userService);
+//        services.setCookieName("remember-cookie");
+//        services.setTokenValiditySeconds(100); // 默认14天
+//        return services;
+//    }
 }

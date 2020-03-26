@@ -5,7 +5,7 @@ datasource:
   password: 123456
   driver-class-name: com.mysql.cj.jdbc.Driver
 server:
-  port: 8080
+  port: 9090
 
 logging:
   file:

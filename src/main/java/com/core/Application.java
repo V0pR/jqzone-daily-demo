@@ -1,5 +1,6 @@
 package com.core;
 
+import io.ebean.DB;
 import io.ebean.EbeanServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
