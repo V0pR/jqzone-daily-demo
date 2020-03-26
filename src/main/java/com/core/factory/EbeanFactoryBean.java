@@ -38,7 +38,6 @@ public class EbeanFactoryBean implements FactoryBean<EbeanServer> {
     private Boolean migrationRun;
 
 
-
     @Autowired
     private DataSource dataSource;
 
@@ -46,7 +45,7 @@ public class EbeanFactoryBean implements FactoryBean<EbeanServer> {
     private CurrentUserProvider currentUserProvider;
 
     @Override
-    public EbeanServer getObject() throws Exception {
+    public EbeanServer getObject() {
 
         ServerConfig config = new ServerConfig();
 
