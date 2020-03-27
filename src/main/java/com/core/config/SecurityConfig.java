@@ -33,17 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers(
-                        "/js/**",
-                        "/css/**",
-                        "/img/**",
-                        "/webjars/**");
-    }
-
-
     /**
      * 定制请求授权规则
      *
@@ -54,10 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    //请求路径"/"允许访问
-                    .antMatchers("/").permitAll()
-                    //其它请求都需要校验才能访问
-                    .anyRequest().authenticated()
+                //请求路径"/"允许访问
+                .antMatchers("/", "/js/**", "/css/**", "/img/**", "/webjars/**")
+                .permitAll()
+                //其它请求都需要校验才能访问
+                .anyRequest().authenticated()
 
                 .and()
                 .formLogin()
@@ -95,17 +85,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(new BCryptPasswordEncoder()).withUser("admin")
                 .password(new BCryptPasswordEncoder().encode("admin"))
                 .roles("USER");
-        //        auth.userDetailsService(userService)
-//                .passwordEncoder(new PasswordEncoder() {
-//                    @Override
-//                    public String encode(CharSequence charSequence) {
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    public boolean matches(CharSequence charSequence, String s) {
-//                        return false;
-//                    }
-//                });
+        //        auth.userDetailsService(userService).passwordEncoder();
     }
 }

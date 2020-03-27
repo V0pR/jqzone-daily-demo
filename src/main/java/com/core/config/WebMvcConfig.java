@@ -13,6 +13,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -30,14 +31,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     GlobalRequestInterceptor globalRequestInterceptor;
 
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/login").setViewName("login");
-    }
-
     /**
-     * 配置拦截器
+     * 拦截器
      *
      * @param registry
      */
@@ -57,6 +52,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
         ArrayList<MediaType> mediaTypes = Lists.newArrayList(MediaType.TEXT_PLAIN, MediaType.TEXT_XML, MediaType.APPLICATION_XML);
         stringConverter.setSupportedMediaTypes(mediaTypes);
         converters.add(fastJsonHttpMessageConverter());
+    }
+
+    /**
+     * 静态资源拦截配置
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("/");
+
     }
 
 

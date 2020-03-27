@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
     <title>Login</title>
 </head>
 <body>
@@ -18,7 +21,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <h3><i class="glyphicon glyphicon-lock" style="font-size:2em;"></i></h3>
-                        <h2 class="text-center">Login</h2>
+                        <h2 class="text-center">登录</h2>
                         <div class="panel-body">
 
                             <div th:if="${param.error}">
@@ -28,7 +31,7 @@
                             </div>
                             <div th:if="${param.logout}">
                                 <div class="alert alert-info">
-                                    You have been logged out.
+                                    您已经注销了。
                                 </div>
                             </div>
 
@@ -59,11 +62,11 @@
                                     <label>
                                         <input id="remember-me"
                                                name="remember-me"
-                                               type="checkbox"/> Remember me
+                                               type="checkbox"/> 记住我
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-block">Login</button>
+                                    <button type="submit" class="btn btn-success btn-block">登录</button>
                                 </div>
                             </form>
 
@@ -74,9 +77,5 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
 </body>
 </html>

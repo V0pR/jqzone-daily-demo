@@ -28,11 +28,3 @@ spring:
   hymeleaf:
     mode: html
     cache: false
-
-#  http:
-#    encoding:
-#      charset: utf-8
-#      force: true
-#      enabled: true
-#  messages:
-#    encoding: UTF-8
