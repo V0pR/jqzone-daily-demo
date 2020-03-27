@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+    <changeSet type="apply">
+        <createTable name="role" pkName="pk_role">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="remark" type="varchar"/>
+            <column name="name" type="varchar"/>
+            <column name="code" type="varchar"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+            <column name="who_created" type="varchar" notnull="true"/>
+            <column name="who_modified" type="varchar" notnull="true"/>
+            <column name="deleted" type="boolean" defaultValue="false" notnull="true"/>
+        </createTable>
+        <addColumn tableName="user">
+            <column name="password" type="varchar"/>
+        </addColumn>
+        <createTable name="user_role_ref" pkName="pk_user_role_ref">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="user_id" type="bigint" notnull="true" references="user.id" foreignKeyName="fk_user_role_ref_user_id" foreignKeyIndex="ix_user_role_ref_user_id"/>
+            <column name="role_id" type="bigint" notnull="true" references="role.id" foreignKeyName="fk_user_role_ref_role_id" foreignKeyIndex="ix_user_role_ref_role_id"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+            <column name="who_created" type="varchar" notnull="true"/>
+            <column name="who_modified" type="varchar" notnull="true"/>
+        </createTable>
+    </changeSet>
+</migration>

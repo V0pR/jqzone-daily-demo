@@ -43,16 +43,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     }
 
-    /**
-     * 添加MessageConverters
-     */
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-        ArrayList<MediaType> mediaTypes = Lists.newArrayList(MediaType.TEXT_PLAIN, MediaType.TEXT_XML, MediaType.APPLICATION_XML);
-        stringConverter.setSupportedMediaTypes(mediaTypes);
-        converters.add(fastJsonHttpMessageConverter());
-    }
 
     /**
      * 静态资源拦截配置
@@ -64,6 +54,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     }
 
+
+    /**
+     * 添加MessageConverters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
+        ArrayList<MediaType> mediaTypes = Lists.newArrayList(MediaType.TEXT_PLAIN, MediaType.TEXT_XML, MediaType.APPLICATION_XML);
+        stringConverter.setSupportedMediaTypes(mediaTypes);
+        converters.add(fastJsonHttpMessageConverter());
+    }
 
     /**
      * 草 终于解决了返回 String 转 object 失败切乱码的问题！！！！
