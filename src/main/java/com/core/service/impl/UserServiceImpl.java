@@ -6,6 +6,7 @@ import com.core.domain.User;
 import com.core.domain.UserRoleRef;
 import com.core.service.UserService;
 import com.google.common.collect.Lists;
+import io.ebean.Ebean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author wangj
@@ -34,16 +36,12 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     HttpServletRequest request;
 
 
-
-
     @Override
     public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
         log.info("loadUserByUsername {}", account);
 
-        User user = User.finder.findByAccount(account);
-        if (null == user) {
-            throw new BizException("user does not exist");
-        }
+        User user = findByAccount(account);
+
 
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
@@ -60,6 +58,22 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         }
         // 返回UserDetails实现类
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), authorities);
+    }
+
+    /**
+     * @param account
+     * @return
+     */
+    private User findByAccount(String account) {
+        Optional<User> optional = Ebean.find(User.class)
+                .where()
+                .eq("account", account)
+                .findOneOrEmpty();
+
+        if (!optional.isPresent()) {
+            throw new BizException("user does not exist");
+        }
+        return optional.get();
     }
 
 

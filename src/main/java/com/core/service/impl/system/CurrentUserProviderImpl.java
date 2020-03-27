@@ -6,11 +6,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
- * @author rocky.lxl
- * @version 1.0
- * @Package com.inmeijia.service.impl
- * @Description: ebean CurrentUserProvider
- * @date 2019/5/8 3:04 PM
+ *
+ * @author wjq
  */
 @Service("currentUserProvider")
 public class CurrentUserProviderImpl implements CurrentUserProvider {

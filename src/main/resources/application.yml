@@ -20,7 +20,7 @@ ebean:
     search:
       packages: com.core.domain
   migration:
-    run: true
+    run: false
 
 
 spring:
