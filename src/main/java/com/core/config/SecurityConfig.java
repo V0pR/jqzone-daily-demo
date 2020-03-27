@@ -9,10 +9,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * @author wangj
@@ -31,7 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
@@ -42,27 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**");
     }
 
-    /**
-     * 定义认证规则
-     *
-     * @param auth
-     * @throws Exception
-     */
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
-                .passwordEncoder(new PasswordEncoder() {
-                    @Override
-                    public String encode(CharSequence charSequence) {
-                        return null;
-                    }
-
-                    @Override
-                    public boolean matches(CharSequence charSequence, String s) {
-                        return false;
-                    }
-                });
-    }
 
     /**
      * 定制请求授权规则
@@ -74,36 +54,58 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                //请求路径"/"允许访问
-                .antMatchers("/").permitAll()
-                //其它请求都需要校验才能访问
-                .anyRequest().authenticated()
+                    //请求路径"/"允许访问
+                    .antMatchers("/").permitAll()
+                    //其它请求都需要校验才能访问
+                    .anyRequest().authenticated()
+
                 .and()
                 .formLogin()
                 //定义登录的页面"/login"，允许访问
                 .loginPage("/login")
                 .permitAll()
+
                 .and()
                 //默认的"/logout", 允许访问
                 .logout()
-                .permitAll();
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
 
-//        // 关闭CSRF跨域
-//        http.csrf().disable();
+                .and()
+                .rememberMe()
+                .key("unique-and-secret")
+                .rememberMeCookieDomain("remember-me-cookie-name")
+                .tokenValiditySeconds(24 * 60 * 60);
+
     }
 
-    //    @Bean
-//    public SCryptPasswordEncoder sCryptPasswordEncoder() {
-//        return new SCryptPasswordEncoder();
-//    }
-
-//    /**
-//     * 如果要设置cookie过期时间或其他相关配置，请在下方自行配置
-//     */
-//    private TokenBasedRememberMeServices getRememberMeServices() {
-//        TokenBasedRememberMeServices services = new TokenBasedRememberMeServices(rememberMeKey, userService);
-//        services.setCookieName("remember-cookie");
-//        services.setTokenValiditySeconds(100); // 默认14天
-//        return services;
-//    }
+    /**
+     * 定义认证规则
+     *
+     * @param auth
+     * @throws Exception
+     */
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .passwordEncoder(new BCryptPasswordEncoder()).withUser("admin")
+                .password(new BCryptPasswordEncoder().encode("admin"))
+                .roles("USER");
+        //        auth.userDetailsService(userService)
+//                .passwordEncoder(new PasswordEncoder() {
+//                    @Override
+//                    public String encode(CharSequence charSequence) {
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public boolean matches(CharSequence charSequence, String s) {
+//                        return false;
+//                    }
+//                });
+    }
 }

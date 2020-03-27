@@ -32,9 +32,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/").setViewName("home");
-        registry.addViewController("/hello").setViewName("hello");
+        registry.addViewController("/index").setViewName("index");
         registry.addViewController("/login").setViewName("login");
     }
 
@@ -45,9 +43,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(globalRequestInterceptor)
-                .addPathPatterns("/erp")
-                .excludePathPatterns("/static");
+        registry.addInterceptor(globalRequestInterceptor);
+
 
     }
 

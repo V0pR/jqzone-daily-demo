@@ -40,7 +40,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
         log.info("loadUserByUsername {}", account);
 
-        User user = findByAccount(account);
+        User user = User.finder.findByAccount(account);
 
 
         HttpSession session = request.getSession();
@@ -60,28 +60,8 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), authorities);
     }
 
-    /**
-     * @param account
-     * @return
-     */
-    private User findByAccount(String account) {
-        Optional<User> optional = Ebean.find(User.class)
-                .where()
-                .eq("account", account)
-                .findOneOrEmpty();
-
-        if (!optional.isPresent()) {
-            throw new BizException("user does not exist");
-        }
-        return optional.get();
-    }
-
-
     @Override
     public void registered(User user) {
-
         create(user);
     }
-
-
 }

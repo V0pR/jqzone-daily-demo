@@ -1,8 +1,11 @@
 package com.core.domain.finder;
 
+import com.core.common.exception.BizException;
 import com.core.domain.User;
 import com.core.domain.query.QUser;
 import io.ebean.Finder;
+
+import java.util.Optional;
 
 /**
  * @author wangj
@@ -26,9 +29,13 @@ public class UserFinder extends Finder<Long, User> {
     }
 
     public User findByAccount(String account) {
-        return this.queryBean()
+        Optional<User> op = this.queryBean()
                 .where()
                 .account.eq(account)
-                .findOne();
+                .findOneOrEmpty();
+        if (!op.isPresent()){
+            throw new BizException("user does not exist");
+        }
+        return op.get();
     }
 }
