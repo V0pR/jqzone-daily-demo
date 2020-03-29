@@ -53,8 +53,16 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
             <version>3.0.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
 
-
+        <!-- 将token存储在redis中 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--mysql-->
         <dependency>
             <groupId>mysql</groupId>
@@ -152,6 +160,7 @@
             <artifactId>jquery</artifactId>
             <version>3.2.1</version>
         </dependency>
+
 
 
 
