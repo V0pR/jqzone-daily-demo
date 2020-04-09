@@ -46,9 +46,20 @@ public class ArrayListDemo<E> {
      */
     protected transient int modCount = 0;
 
-
     public ArrayListDemo() {
         this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+    }
+
+
+    public ArrayListDemo(int initialCapacity) {
+        if (initialCapacity > 0) {
+            this.elementData = new Object[initialCapacity];
+        } else if (initialCapacity == 0) {
+            this.elementData = EMPTY_ELEMENTDATA;
+        } else {
+            throw new IllegalArgumentException("Illegal Capacity: "+
+                    initialCapacity);
+        }
     }
 
     public ArrayListDemo(Collection<? extends E> c) {
@@ -161,7 +172,9 @@ public class ArrayListDemo<E> {
 
             System.arraycopy(elementData, index + 1, elementData, index,
                     numMoved);
+        System.err.println(elementData.length);
         elementData[--size] = null; // clear to let GC do its work
+        System.err.println(elementData.length);
 
         return oldValue;
     }
@@ -214,19 +227,26 @@ public class ArrayListDemo<E> {
             System.arraycopy(elementData, index+1, elementData, index,
                     numMoved);
         }
-        elementData[--size] = null; // clear to let GC do its work
+        // size-1，最后一个元素置为null
+        // clear to let GC do its work
+        elementData[--size] = null;
     }
 
 
     public static void main(String[] args) {
         System.err.println(16 >> 1);
         ArrayList<Integer> objects = new ArrayList<>();
-        objects.add(1);
-        System.err.println(objects.get(0));
+        Integer aa =1;
+        Integer bb =2;
+        Integer cc =3;
+        objects.add(aa);
+        objects.add(bb);
+        objects.add(cc);
         ArrayList<Integer> objects1 = new ArrayList<>(objects);
         System.err.println(objects.get(0));
-        System.err.println(objects1.get(0));
-        System.err.println(objects.size());
+        System.err.println(objects.get(1));
+        System.err.println(objects.get(2));
+        objects.remove(1);
 
     }
 
