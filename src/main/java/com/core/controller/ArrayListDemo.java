@@ -51,18 +51,17 @@ public class ArrayListDemo {
      * @return
      */
     public boolean add(Object e) {
-
-        ensureExplicitCapacity(calculateCapacity(elementData, size + 1));
+        ensureCapacityInternal(size + 1);
         elementData[size++] = e;
         return true;
     }
 
-//    private void ensureCapacityInternal(int minCapacity) {
-//        ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
-//    }
+    private void ensureCapacityInternal(int minCapacity) {
+        ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
+    }
 
     /**
-     * 判断初始化值，这里进行动态扩容逻辑
+     * 判断初始化值
      * @param elementData
      * @param minCapacity
      * @return
@@ -79,13 +78,15 @@ public class ArrayListDemo {
     private void ensureExplicitCapacity(int minCapacity) {
         //数组变更记录
         modCount++;
+
+        //判断是否需要进行动态扩容
         if (minCapacity - elementData.length > 0) {
             grow(minCapacity);
         }
     }
 
     /**
-     * 创建数组并返回
+     * 创建数组并返回 ，这里进行动态扩容逻辑
      * @param minCapacity
      */
     private void grow(int minCapacity) {
@@ -110,7 +111,7 @@ public class ArrayListDemo {
 
 
     /**
-     * 移除
+     * 移除 下标
      * @param index
      * @return
      */
