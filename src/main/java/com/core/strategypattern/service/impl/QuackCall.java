@@ -1,6 +1,6 @@
-package com.core.StrategyPattern.service.impl;
+package com.core.strategypattern.service.impl;
 
-import com.core.StrategyPattern.service.Quack;
+import com.core.strategypattern.service.Quack;
 import org.springframework.stereotype.Service;
 
 /**

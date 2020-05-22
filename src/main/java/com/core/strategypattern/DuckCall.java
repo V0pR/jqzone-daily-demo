@@ -1,9 +1,4 @@
-package com.core.StrategyPattern;
-
-import com.core.StrategyPattern.service.Fly;
-import com.core.StrategyPattern.service.Quack;
-import com.core.StrategyPattern.service.impl.FlyCall;
-import com.core.StrategyPattern.service.impl.QuackCall;
+package com.core.strategypattern;
 
 /**
  * @author wjq

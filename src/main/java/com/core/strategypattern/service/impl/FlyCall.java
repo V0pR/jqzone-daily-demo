@@ -1,6 +1,6 @@
-package com.core.StrategyPattern.service.impl;
+package com.core.strategypattern.service.impl;
 
-import com.core.StrategyPattern.service.Fly;
+import com.core.strategypattern.service.Fly;
 import org.springframework.stereotype.Service;
 
 /**

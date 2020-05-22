@@ -1,4 +1,4 @@
-package com.core.StrategyPattern.service;
+package com.core.strategypattern.service;
 
 /**
  * @author wjq
