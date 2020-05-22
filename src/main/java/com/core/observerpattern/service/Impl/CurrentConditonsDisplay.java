@@ -1,6 +1,6 @@
 package com.core.observerpattern.service.Impl;
 
-import com.core.observerpattern.Observer;
+import com.core.observerpattern.service.Observer;
 import com.core.observerpattern.service.Dispaly;
 import com.core.observerpattern.service.Subject;
 
@@ -25,15 +25,17 @@ public class CurrentConditonsDisplay implements Dispaly, Observer {
 
     @Override
     public void display() {
-        System.err.println(a + b + c);
+        System.err.println(a);
+        System.err.println(b);
+        System.err.println(c);
 
     }
 
     @Override
     public void update(float a, float b, float c) {
-        this.a=a;
-        this.b=b;
-        this.c=c;
+        this.a = a;
+        this.b = b;
+        this.c = c;
         display();
     }
 }

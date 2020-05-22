@@ -1,4 +1,4 @@
-package com.core.observerpattern;
+package com.core.observerpattern.service;
 
 /**
  * @author wjq

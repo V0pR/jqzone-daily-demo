@@ -1,8 +1,7 @@
 package com.core.observerpattern.service.Impl;
 
-import com.core.observerpattern.Observer;
+import com.core.observerpattern.service.Observer;
 import com.core.observerpattern.service.Subject;
-import org.thymeleaf.expression.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,12 @@ public class WeatherData implements Subject<Observer> {
 
     /**
      * 天气数据参数
+     *
      * @param
      */
-    private float  a;
-    private float  b;
-    private float  c;
+    private float a;
+    private float b;
+    private float c;
 
     public WeatherData() {
         this.observerList = new ArrayList<>();
@@ -51,5 +51,12 @@ public class WeatherData implements Subject<Observer> {
             observer.update(a, b, c);
         }
 
+    }
+
+    public void setWeatherData(float a, float b, float c) {
+        this.a =a;
+        this.b= b;
+        this.c = c;
+        notifyObserver();
     }
 }

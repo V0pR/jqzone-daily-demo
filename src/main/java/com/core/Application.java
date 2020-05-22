@@ -1,8 +1,6 @@
 package com.core;
 
 
-import io.ebean.EbeanServer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -25,9 +23,6 @@ public class Application implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-    @Autowired
-    private EbeanServer ebeanServer;
 
 }
 
