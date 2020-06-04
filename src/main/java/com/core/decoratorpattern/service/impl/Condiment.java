@@ -10,7 +10,7 @@ import com.core.decoratorpattern.service.Base;
  * @Description:
  * @date 2020/6/2 18:03
  */
-public class iceCondiment implements Base {
+public class Condiment implements Base {
     @Override
     public double cost() {
         System.err.println("冰块价值1元");
