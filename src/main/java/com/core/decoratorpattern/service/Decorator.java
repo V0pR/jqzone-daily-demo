@@ -10,10 +10,10 @@ import com.core.decoratorpattern.service.impl.Condiment;
  * @Description:
  * @date 2020/6/3 17:57
  */
-public class Mocha extends Condiment {
+public class Decorator extends Condiment {
     Base base;
 
-    Mocha(Base base1){
+    Decorator(Base base1){
         this.base =base1;
     }
 

@@ -12,7 +12,7 @@ package com.core.decoratorpattern.service;
 public interface Base {
 
     default String description(){
-        return  "unkonw description";
+        return  " normal description";
     };
 
      double cost();
