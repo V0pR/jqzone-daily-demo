@@ -168,11 +168,11 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.alipay.fc.csplatform</groupId>
-            <artifactId>fccsplatform-common-crypto</artifactId>
-            <version>1.0.0.20161108</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alipay.fc.csplatform</groupId>-->
+<!--            <artifactId>fccsplatform-common-crypto</artifactId>-->
+<!--            <version>1.0.0.20161108</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <repositories>
