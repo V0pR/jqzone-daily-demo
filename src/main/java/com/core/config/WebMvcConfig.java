@@ -67,8 +67,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 草 终于解决了返回 String 转 object 失败切乱码的问题！！！！
-     *
      * @return
      */
     @Bean
