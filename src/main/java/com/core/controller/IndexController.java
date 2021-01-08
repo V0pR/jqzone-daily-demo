@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
 public class IndexController {
     Logger logger =  LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletResponse response) {
         response.addCookie(MJCookieUtils.generateCookie("CID", "", "/", 0));
         response.addCookie(MJCookieUtils.generateCookie("EID", "-1", "/", 0));
