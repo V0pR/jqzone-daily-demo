@@ -1,81 +1,23 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>登录</title>
+    <meta name="keywords" content="装企通"/>
+    <meta name="description" content="装企通"/>
+    <meta content="text/html;charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
-
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
-    <title>Login</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
+
 <body>
+<div id="app"></div>
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="text-center">
-                        <h3><i class="glyphicon glyphicon-lock" style="font-size:2em;"></i></h3>
-                        <h2 class="text-center">登录</h2>
-                        <div class="panel-body">
-
-                            <div th:if="${param.error}">
-                                <div class="alert alert-danger">
-                                    Invalid username or password.
-                                </div>
-                            </div>
-                            <div th:if="${param.logout}">
-                                <div class="alert alert-info">
-                                    您已经注销了。
-                                </div>
-                            </div>
-
-                            <form th:action="@{/login}" method="post">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">@</span>
-                                        <input id="username"
-                                               name="username"
-                                               autofocus="autofocus"
-                                               class="form-control"
-                                               placeholder="Username"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-lock"></i>
-                                        </span>
-                                        <input id="password"
-                                               name="password"
-                                               class="form-control"
-                                               placeholder="Password"
-                                               type="password"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        <input id="remember-me"
-                                               name="remember-me"
-                                               type="checkbox"/> 记住我
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-block">登录</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h6>登录页面</h6>
+    <input type="input">账号:</input>
+    <input type="input">密码:</input>
 </div>
 </body>
 </html>

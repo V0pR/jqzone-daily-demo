@@ -18,17 +18,5 @@
 <div class="container">
     <h1>Spring Security Remember Me Hashing Configuration Example</h1>
 </div>
-<footer>
-    <div class="container">
-        <p>
-            &copy; Memorynotfound.com
-            <span sec:authorize="isAuthenticated()" style="display: inline-block;">
-                    | Logged user: <span sec:authentication="name"></span> |
-                    Roles: <span sec:authentication="principal.authorities"></span> |
-                    <a th:href="@{/logout}">Sign Out</a>
-                </span>
-        </p>
-    </div>
-</footer>
 </body>
 </html>
