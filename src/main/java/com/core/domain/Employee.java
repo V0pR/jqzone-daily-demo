@@ -1,15 +1,14 @@
 package com.core.domain;
 
 import com.core.common.base.BaseDomain;
-import com.core.domain.enums.UserStatus;
-import com.core.domain.finder.UserFinder;
+import com.core.domain.enums.EmployeeStatus;
+import com.core.domain.finder.EmployeeFinder;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.naming.Name;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @author wangj
@@ -20,12 +19,12 @@ import javax.persistence.Table;
  * @date 2020/3/13 23:47
  */
 @Entity
-@Table
 @Data
 @Builder
-public class User extends BaseDomain {
+@Table(name = "employee", uniqueConstraints = {@UniqueConstraint(columnNames = {"phone_number"})})
+public class Employee extends BaseDomain {
 
-    public static final UserFinder finder = new UserFinder();
+    public static final EmployeeFinder finder = new EmployeeFinder();
 
     /**
      * 名字
@@ -52,7 +51,7 @@ public class User extends BaseDomain {
     /**
      * 电话
      */
-    private String phoneNo;
+    private String phoneNumber;
     /**
      * 邮箱
      */
@@ -61,12 +60,5 @@ public class User extends BaseDomain {
     /**
      * 状态
      */
-    private UserStatus status;
-
-    /**
-     * 是否是VIP
-     */
-    private boolean hasVip;
-
-
+    private EmployeeStatus status;
 }

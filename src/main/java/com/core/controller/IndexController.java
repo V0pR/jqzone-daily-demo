@@ -33,4 +33,14 @@ public class IndexController {
         response.addCookie(MJCookieUtils.generateCookie("signature", "", "/", 0));
         return "login";
     }
+
+    @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
+    public String index() {
+        return "erp/index";
+    }
+
+    @RequestMapping(value = "register", method = RequestMethod.GET)
+    public String register() {
+        return "erp/register";
+    }
 }

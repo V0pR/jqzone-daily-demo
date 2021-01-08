@@ -10,7 +10,7 @@ import io.ebean.annotation.EnumValue;
  * @Description: TODO
  * @date 2020/3/16 23:41
  */
-public enum UserStatus {
+public enum EmployeeStatus {
 
     /**
      * 待完善

@@ -1,6 +1,5 @@
 package com.core.service.impl.system;
 
-import com.core.domain.User;
 import io.ebean.config.CurrentUserProvider;
 import org.springframework.stereotype.Service;
 
