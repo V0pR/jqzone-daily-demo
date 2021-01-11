@@ -22,9 +22,8 @@ ebean:
   migration:
     run: false
 
-
 spring:
   #thymeleaf
   hymeleaf:
-    mode: html
+    mode: HTML5
     cache: false

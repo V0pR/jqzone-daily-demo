@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-public class WebMvcConfig implements WebMvcConfigurer {
+public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Autowired
     GlobalRequestInterceptor globalRequestInterceptor;
@@ -39,8 +40,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(globalRequestInterceptor);
-
-
     }
 
 
@@ -50,8 +49,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("/");
-
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/**")
+         .addResourceLocations("classpath:/public/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+        super.addResourceHandlers(registry);
     }
 
 
