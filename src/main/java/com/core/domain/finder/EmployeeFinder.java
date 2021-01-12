@@ -28,14 +28,17 @@ public class EmployeeFinder extends Finder<Long, Employee> {
         return new QEmployee(db());
     }
 
-    public Employee findByAccount(String account) {
-        Optional<Employee> optional = this.queryBean()
+    public Optional<Employee> findByAccount(String account) {
+        return this.queryBean()
                 .where()
                 .account.eq(account)
                 .findOneOrEmpty();
-        if (!optional.isPresent()){
-            throw new BizException("employee does not exist");
-        }
-        return optional.get();
+    }
+
+    public Optional<Employee> findByEmployeeId(Long employeeId) {
+        return this.queryBean()
+                .where()
+                .id.eq(employeeId)
+                .findOneOrEmpty();
     }
 }
