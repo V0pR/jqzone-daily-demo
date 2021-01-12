@@ -24,6 +24,7 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         String sessionId = request.getHeader("sessionKey");
         if (StringUtils.isBlank(sessionId)) {
             sessionId = request.getParameter("sessionKey");

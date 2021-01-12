@@ -4,6 +4,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.core.interceptor.GlobalRequestInterceptor;
+import com.core.interceptor.LoginRequestInterceptor;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,13 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-public class WebMvcConfig extends WebMvcConfigurationSupport {
+public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     GlobalRequestInterceptor globalRequestInterceptor;
+
+    @Autowired
+    LoginRequestInterceptor loginRequestInterceptor;
 
 
     /**
@@ -38,7 +42,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(globalRequestInterceptor);
+        registry.addInterceptor(globalRequestInterceptor).addPathPatterns();
+        registry.addInterceptor(loginRequestInterceptor)
+                .addPathPatterns("/**").excludePathPatterns("/index/**");
     }
 
     /**
@@ -48,12 +54,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
     }
 
     @Override
-    protected void addViewControllers(ViewControllerRegistry registry) {
-        super.addViewControllers(registry);
+    public void addViewControllers(ViewControllerRegistry registry) {
     }
 
     /**
