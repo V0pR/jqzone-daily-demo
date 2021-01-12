@@ -22,8 +22,5 @@ ebean:
   migration:
     run: false
 
-spring:
-  #thymeleaf
-  hymeleaf:
-    mode: HTML5
-    cache: false
+
+

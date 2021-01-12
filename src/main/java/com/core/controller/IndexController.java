@@ -24,20 +24,21 @@ public class IndexController {
     Logger logger =  LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(HttpServletResponse response) {
-        response.addCookie(MJCookieUtils.generateCookie("CID", "", "/", 0));
-        response.addCookie(MJCookieUtils.generateCookie("EID", "-1", "/", 0));
-        response.addCookie(MJCookieUtils.generateCookie("signature", "", "/", 0));
+    public String login() {
+
         return "login";
     }
 
     @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
     public String index() {
-        return "erp/index";
+        return "index";
     }
 
     @RequestMapping(value = "register", method = RequestMethod.GET)
-    public String register() {
-        return "erp/register";
+    public String register(HttpServletResponse response) {
+        response.addCookie(MJCookieUtils.generateCookie("CID", "", "/", 0));
+        response.addCookie(MJCookieUtils.generateCookie("EID", "-1", "/", 0));
+        response.addCookie(MJCookieUtils.generateCookie("signature", "", "/", 0));
+        return "register";
     }
 }

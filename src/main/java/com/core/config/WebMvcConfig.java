@@ -16,7 +16,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,21 +41,20 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addInterceptor(globalRequestInterceptor);
     }
 
-
     /**
      * 静态资源拦截配置
+     *
      * @param registry
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/**")
-         .addResourceLocations("classpath:/public/");
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
         super.addResourceHandlers(registry);
     }
 
+    @Override
+    protected void addViewControllers(ViewControllerRegistry registry) {
+        super.addViewControllers(registry);
+    }
 
     /**
      * 添加MessageConverters
@@ -81,7 +79,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
         //2-1 处理中文乱码问题
         List<MediaType> fastMediaTypes = new ArrayList<>();
-        fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        fastMediaTypes.add(MediaType.APPLICATION_JSON);
         fastConverter.setSupportedMediaTypes(fastMediaTypes);
 
         //3、在convert中添加配置信息.

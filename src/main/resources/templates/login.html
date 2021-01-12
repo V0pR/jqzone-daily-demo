@@ -3,10 +3,9 @@
     <title>登录</title>
     <meta content="text/html;charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
@@ -22,7 +21,7 @@
         <div class="form-group col-md-2">
             <label for="inputPassword4">密码</label>
             <input type="password" class="form-control" id="inputPassword4">
-    </div>
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">登录</button>
 </form>
