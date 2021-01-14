@@ -2,8 +2,10 @@ package com.core.domain;
 
 import com.core.domain.finder.SessionFinder;
 import io.ebean.Model;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,8 @@ import java.util.Date;
 @Entity
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "session")
 public class Session extends Model {
 
@@ -27,9 +31,6 @@ public class Session extends Model {
 
     @Column
     private String accountId;
-
-    @Column
-    private Long employeeId;
 
     @Column
     private Date expiredDate = new Date();

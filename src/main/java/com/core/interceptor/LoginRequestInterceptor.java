@@ -2,7 +2,7 @@ package com.core.interceptor;
 
 import com.core.common.exception.BizException;
 import com.core.common.exception.SessionException;
-import com.core.domain.Employee;
+import com.core.domain.User;
 import com.core.domain.Session;
 import com.core.domain.enums.EmployeeStatus;
 import org.apache.commons.lang3.StringUtils;
@@ -40,18 +40,17 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
             throw new SessionException("登录过期,请重新登录");
         }
 
-        Optional<Employee> optional = Employee.finder.findByEmployeeId(session.getEmployeeId());
+        Optional<User> optional = User.finder.findByUserId(session.getAccountId());
         if (!optional.isPresent()) {
             throw new BizException("欢迎使用wangjqDemo项目，请先加入系统");
         }
-        Employee employee = optional.get();
-        session.setEmployeeId(employee.getId());
+        User employee = optional.get();
         session.setAccountId(employee.getAccount());
         session.setExpiredDate(new Date(System.currentTimeMillis() + EXPIRED_MILLIS));
         session.update();
 
         if (null != employee) {
-            if (!EmployeeStatus.NORMAL.equals(employee.getStatus())){
+            if (!EmployeeStatus.NORMAL.equals(employee.getStatus())) {
                 throw new BizException("非正常账户不可登录");
             }
         }

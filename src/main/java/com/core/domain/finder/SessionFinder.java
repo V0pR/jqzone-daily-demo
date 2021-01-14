@@ -6,6 +6,7 @@ import io.ebean.Ebean;
 import io.ebean.Finder;
 
 import java.util.Date;
+import java.util.Optional;
 
 public class SessionFinder extends Finder<Long, Session> {
     public SessionFinder() {
@@ -27,5 +28,13 @@ public class SessionFinder extends Finder<Long, Session> {
                 .and()
                 .gt("expiredDate", new Date())
                 .findOne();
+    }
+
+    public Optional<Session> findOneOrEmpty(String sessionId) {
+        return Ebean.find(Session.class)
+                .where().idEq(sessionId)
+                .and()
+                .gt("expiredDate", new Date())
+                .findOneOrEmpty();
     }
 }

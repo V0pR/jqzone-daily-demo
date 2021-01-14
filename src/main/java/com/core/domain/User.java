@@ -2,7 +2,7 @@ package com.core.domain;
 
 import com.core.common.base.BaseDomain;
 import com.core.domain.enums.EmployeeStatus;
-import com.core.domain.finder.EmployeeFinder;
+import com.core.domain.finder.UserFinder;
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,10 +21,10 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Data
 @Builder
-@Table(name = "employee", uniqueConstraints = {@UniqueConstraint(columnNames = {"phone_number"})})
-public class Employee extends BaseDomain {
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"phone_number"})})
+public class User extends BaseDomain {
 
-    public static final EmployeeFinder finder = new EmployeeFinder();
+    public static final UserFinder finder = new UserFinder();
 
     /**
      * 名字
