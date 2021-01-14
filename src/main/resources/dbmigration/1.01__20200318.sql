@@ -1,5 +1,12 @@
 -- apply changes
-create table employee (
+create table session (
+  id                            varchar(255) not null,
+  account_id                    varchar(255),
+  expired_date                  datetime(6),
+  constraint pk_session primary key (id)
+);
+
+create table user (
   id                            bigint auto_increment not null,
   remark                        varchar(255),
   name                          varchar(255),
@@ -16,7 +23,7 @@ create table employee (
   who_created                   varchar(255) not null,
   who_modified                  varchar(255) not null,
   deleted                       tinyint(1) default 0 not null,
-  constraint uq_employee_phone_number unique (phone_number),
-  constraint pk_employee primary key (id)
+  constraint uq_user_phone_number unique (phone_number),
+  constraint pk_user primary key (id)
 );
 
