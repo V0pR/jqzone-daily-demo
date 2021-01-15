@@ -43,15 +43,18 @@ public class IndexController {
                         @RequestParam("account") String encryptedData) {
         //todo 解密
         String account = encryptedData;
-        Optional<Session> optional = Session.finder.findOneOrEmpty(encryptedData);
+        Optional<Session> optional = Session.finder.findOneOrEmptyByAccount(account);
         if (!optional.isPresent()) {
             Session session = new Session();
             session.setExpiredDate(new Date(System.currentTimeMillis() + EXPIRED_MILLIS));
             session.setAccountId(account);
             sessionService.create(session);
+            return "index";
         }
-        employeeService.login(response);
-        return "login";
+        Session session = optional.get();
+        session.setExpiredDate(new Date(System.currentTimeMillis() + EXPIRED_MILLIS));
+        sessionService.update(session);
+        return "index";
     }
 
     @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)

@@ -15,4 +15,9 @@ public class SessionServiceImpl implements SessionService {
     public void create(Session session) {
         Ebean.insert(session) ;
     }
+
+    @Override
+    public void update(Session session) {
+        Ebean.update(session);
+    }
 }

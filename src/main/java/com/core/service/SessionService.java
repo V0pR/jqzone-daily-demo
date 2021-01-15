@@ -7,4 +7,6 @@ import com.core.domain.Session;
  */
 public interface SessionService {
     void create(Session session);
+
+    void update(Session session);
 }

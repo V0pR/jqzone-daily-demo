@@ -23,18 +23,26 @@ public class SessionFinder extends Finder<Long, Session> {
 
 
     public Session findById(String sessionId) {
-        return Ebean.find(Session.class)
-                .where().idEq(sessionId)
-                .and()
-                .gt("expiredDate", new Date())
+        return this.queryBean()
+                .where()
+                .id.eq(sessionId)
+                .expiredDate.gt(new Date())
                 .findOne();
     }
 
     public Optional<Session> findOneOrEmpty(String sessionId) {
-        return Ebean.find(Session.class)
-                .where().idEq(sessionId)
-                .and()
-                .gt("expiredDate", new Date())
+        return this.queryBean()
+                .where()
+                .id.eq(sessionId)
+                .expiredDate.gt(new Date())
+                .findOneOrEmpty();
+    }
+
+    public Optional<Session> findOneOrEmptyByAccount(String account) {
+        return this.queryBean()
+                .where()
+                .accountId.eq(account)
+//                .expiredDate.gt(new Date())
                 .findOneOrEmpty();
     }
 }
