@@ -55,6 +55,4 @@ public class BaseDomain extends Model {
     @SoftDelete
     @JsonIgnore
     private boolean deleted;
-
-    private String remark;
 }

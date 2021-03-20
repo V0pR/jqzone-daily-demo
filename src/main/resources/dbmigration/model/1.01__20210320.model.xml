@@ -3,7 +3,6 @@
     <changeSet type="apply">
         <createTable name="user_feed_back" pkName="pk_user_feed_back">
             <column name="id" type="bigint" primaryKey="true"/>
-            <column name="remark" type="varchar"/>
             <column name="uid" type="varchar"/>
             <column name="title" type="varchar"/>
             <column name="content" type="varchar"/>
@@ -17,7 +16,6 @@
         </createTable>
         <createTable name="version_control" pkName="pk_version_control">
             <column name="id" type="bigint" primaryKey="true"/>
-            <column name="remark" type="varchar"/>
             <column name="device" type="varchar"/>
             <column name="version_code" type="varchar"/>
             <column name="switch_tag" type="varchar"/>

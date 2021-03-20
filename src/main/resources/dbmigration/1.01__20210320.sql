@@ -1,7 +1,6 @@
 -- apply changes
 create table user_feed_back (
   id                            bigint auto_increment not null,
-  remark                        varchar(255),
   uid                           varchar(255),
   title                         varchar(255),
   content                       varchar(255),
@@ -17,7 +16,6 @@ create table user_feed_back (
 
 create table version_control (
   id                            bigint auto_increment not null,
-  remark                        varchar(255),
   device                        varchar(255),
   version_code                  varchar(255),
   switch_tag                    varchar(255),
