@@ -3,7 +3,6 @@ package com.core.service.impl;
 import com.core.domain.UserFeedBack;
 import com.core.service.UserFeedBackService;
 import io.ebean.DB;
-import io.ebean.Ebean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,5 +22,13 @@ public class UserFeedBackServiceImpl implements UserFeedBackService {
     public List<UserFeedBack> findUserFeedBackList() {
         return DB.find(UserFeedBack.class)
                 .findList();
+    }
+
+    @Override
+    public UserFeedBack findUserFeedBackById(Long userFeedBackId) {
+        return DB.find(UserFeedBack.class)
+                .where()
+                .idEq(userFeedBackId)
+                .findOne();
     }
 }

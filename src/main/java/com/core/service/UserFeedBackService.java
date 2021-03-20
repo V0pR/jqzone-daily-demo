@@ -20,4 +20,6 @@ public interface UserFeedBackService {
      * @return
      */
     List<UserFeedBack> findUserFeedBackList();
+
+    UserFeedBack findUserFeedBackById(Long userFeedBackId);
 }

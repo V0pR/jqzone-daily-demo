@@ -40,7 +40,7 @@ public class GlobalRequestInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         START_TIME.set(System.currentTimeMillis());
-        checkSignature(request);
+       // checkSignature(request);
         return super.preHandle(request, response, handler);
     }
 
