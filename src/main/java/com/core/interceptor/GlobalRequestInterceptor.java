@@ -34,7 +34,7 @@ public class GlobalRequestInterceptor extends HandlerInterceptorAdapter {
     @Value("${core.security.key1}")
     private String securityKey1;
 
-    @Value("${core.security.key}")
+    @Value("${core.security.key2}")
     private String securityKey2;
 
     @Override
