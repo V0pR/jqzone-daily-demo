@@ -32,7 +32,7 @@ public class VersionControl extends BaseDomain {
     /**
      *  (功能开关接口，0或者1)string
      */
-    private String function;
+    private String switchTag;
     /**
      *  (apk 下载地址)string
      */

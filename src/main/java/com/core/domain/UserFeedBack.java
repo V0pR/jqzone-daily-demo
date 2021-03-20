@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Data
 @Builder
-@Table(name = "version_control")
+@Table(name = "user_feed_back")
 public class UserFeedBack extends BaseDomain {
 
     /**
