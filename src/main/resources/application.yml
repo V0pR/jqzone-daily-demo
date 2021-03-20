@@ -26,3 +26,6 @@ spring:
   hymeleaf:
     mode: html
     cache: false
+core:
+  security:
+    key: 0161df832b464d2eaca0d4fccaa0e14f

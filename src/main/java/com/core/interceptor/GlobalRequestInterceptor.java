@@ -1,7 +1,11 @@
 package com.core.interceptor;
 
+import com.core.common.exception.SignatureException;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -9,6 +13,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.invoke.MethodHandles;
+import java.util.Date;
 import java.util.Enumeration;
 
 /**
@@ -26,9 +31,13 @@ public class GlobalRequestInterceptor extends HandlerInterceptorAdapter {
 
     private static final ThreadLocal<Long> START_TIME = new ThreadLocal<>();
 
+    @Value("${core.security.key}")
+    private String coreSecurityKey;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         START_TIME.set(System.currentTimeMillis());
+        checkSignature(request);
         return super.preHandle(request, response, handler);
     }
 
@@ -48,5 +57,17 @@ public class GlobalRequestInterceptor extends HandlerInterceptorAdapter {
 
         START_TIME.remove();
         super.postHandle(request, response, handler, modelAndView);
+    }
+
+    private void checkSignature(HttpServletRequest request) {
+        String requestSignature = request.getHeader("signature");
+        String coreAppKey = request.getHeader("coreAppKey");
+
+        String date = DateFormatUtils.format(new Date(), "yyyyMMdd");
+        String signature = DigestUtils.sha1Hex(String.format("%s,%s,%s", coreAppKey, coreSecurityKey, date));
+        if (!requestSignature.equals(signature)) {
+            throw new SignatureException("无效的签名");
+        }
+
     }
 }
