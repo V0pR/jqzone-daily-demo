@@ -25,7 +25,6 @@ import java.lang.invoke.MethodHandles;
 @SpringBootApplication
 @EnableScheduling
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.core"})
 public class Application implements WebMvcConfigurer {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
@@ -37,7 +36,6 @@ public class Application implements WebMvcConfigurer {
 
     @Autowired
     private EbeanServer ebeanServer;
-
 
 }
 

@@ -4,7 +4,6 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.core.interceptor.GlobalRequestInterceptor;
-import com.core.interceptor.LoginRequestInterceptor;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,9 +30,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     GlobalRequestInterceptor globalRequestInterceptor;
 
-    @Autowired
-    LoginRequestInterceptor loginRequestInterceptor;
-
 
     /**
      * 拦截器
@@ -42,9 +38,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(globalRequestInterceptor).addPathPatterns();
-        registry.addInterceptor(loginRequestInterceptor)
-                .addPathPatterns("/**").excludePathPatterns("/index/**");
+
     }
 
     /**

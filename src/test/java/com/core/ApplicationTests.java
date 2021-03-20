@@ -1,6 +1,6 @@
 package com.core;
 
-import com.core.domain.Employee;
+import com.core.domain.VersionControl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,7 @@ class ApplicationTests {
 
     @Test
     void contextLoads() {
-        Employee.finder.findByAccount("admin");
+
     }
 
 }
