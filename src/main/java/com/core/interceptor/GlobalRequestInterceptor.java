@@ -1,12 +1,12 @@
 package com.core.interceptor;
 
 import com.core.common.exception.SignatureException;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -31,8 +31,11 @@ public class GlobalRequestInterceptor extends HandlerInterceptorAdapter {
 
     private static final ThreadLocal<Long> START_TIME = new ThreadLocal<>();
 
+    @Value("${core.security.key1}")
+    private String securityKey1;
+
     @Value("${core.security.key}")
-    private String coreSecurityKey;
+    private String securityKey2;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -60,11 +63,9 @@ public class GlobalRequestInterceptor extends HandlerInterceptorAdapter {
     }
 
     private void checkSignature(HttpServletRequest request) {
-        String requestSignature = request.getHeader("signature");
-        String coreAppKey = request.getHeader("coreAppKey");
-
-        String date = DateFormatUtils.format(new Date(), "yyyyMMdd");
-        String signature = DigestUtils.sha1Hex(String.format("%s,%s,%s", coreAppKey, coreSecurityKey, date));
+        String requestSignature = request.getHeader("sign");
+        String data = request.getHeader("data");
+        String signature = DigestUtils.md5DigestAsHex((String.format("%s,%s,%s", securityKey1, data, securityKey2)).getBytes());
         if (!requestSignature.equals(signature)) {
             throw new SignatureException("无效的签名");
         }
