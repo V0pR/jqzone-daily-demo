@@ -1,6 +1,6 @@
 #datasource
 datasource:
-  url: jdbc:mysql://localhost:3306/lzj-app?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+  url: jdbc:mysql://localhost:3306/lzj_app?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
   username: root
   password: 123456
   driver-class-name: com.mysql.cj.jdbc.Driver
