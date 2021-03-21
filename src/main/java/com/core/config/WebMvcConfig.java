@@ -38,21 +38,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(globalRequestInterceptor).addPathPatterns().excludePathPatterns("/index");
-
-    }
-
-    /**
-     * 静态资源拦截配置
-     *
-     * @param registry
-     */
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addInterceptor(globalRequestInterceptor).addPathPatterns();
     }
 
     /**
