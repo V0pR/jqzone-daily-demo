@@ -25,7 +25,7 @@ public class IndexController {
      */
     @RequestMapping("/user-agreement")
     public String UserAgreement() {
-        return "UserAgreement";
+        return "userAgreement";
     }
 
 }
