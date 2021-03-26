@@ -1,4 +1,4 @@
-package com.core.service.impl.system;
+package com.core.service.system;
 
 import io.ebean.config.CurrentUserProvider;
 import org.springframework.stereotype.Service;
