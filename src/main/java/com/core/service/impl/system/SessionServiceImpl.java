@@ -1,8 +1,6 @@
 package com.core.service.impl.system;
 
 import com.core.domain.Session;
-import com.core.service.SessionService;
-import io.ebean.DB;
 import io.ebean.Ebean;
 import org.springframework.stereotype.Service;
 
