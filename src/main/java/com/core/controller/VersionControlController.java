@@ -20,6 +20,10 @@ public class VersionControlController {
     private VersionControlService versionControlService;
 
 
+    /**
+     * 版本控制
+     * @return
+     */
     @GetMapping(value = "/find-version-control-list",produces = "application/json")
     public List<VersionControl> findVersionControlList(){
        return versionControlService.findVersionControlList();

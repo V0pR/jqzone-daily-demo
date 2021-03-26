@@ -23,15 +23,29 @@ public class UserFeedBackController {
     @Autowired
     private UserFeedBackService userFeedBackService;
 
+    /**
+     * 创建用户反馈
+     * @param userFeedBack
+     */
     @PostMapping(value = "/create", produces = "application/json")
     public void create(UserFeedBack userFeedBack) {
         userFeedBackService.create(userFeedBack);
     }
 
+    /**
+     * 查询用户反馈列表
+     * @return
+     */
     @GetMapping(value = "/find-user-feed-back-list", produces = "application/json")
     public List<UserFeedBack> findUserFeedBackList() {
         return userFeedBackService.findUserFeedBackList();
     }
+
+    /**
+     * 查询反馈详情
+     * @param userFeedBackId
+     * @return
+     */
     @GetMapping(value = "/{userFeedBackId}", produces = "application/json")
     public UserFeedBack  findUserFeedBackList(@PathVariable Long userFeedBackId) {
         return userFeedBackService.findUserFeedBackById(userFeedBackId);
