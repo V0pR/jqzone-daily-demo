@@ -2,30 +2,13 @@ package com.core.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author v0pr
  */
-@Controller
+@RestController("indexController")
 @RequestMapping("/index")
 public class IndexController {
-
-    /**
-     * 隐私政策
-     * @return
-     */
-    @RequestMapping("/privacy-policy")
-    public String privacyPolicy() {
-        return "privacyPolicy";
-    }
-
-    /**
-     * 用户协议
-     * @return
-     */
-    @RequestMapping("/user-agreement")
-    public String UserAgreement() {
-        return "userAgreement";
-    }
 
 }
