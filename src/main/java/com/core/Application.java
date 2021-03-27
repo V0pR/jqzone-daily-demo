@@ -1,6 +1,7 @@
 package com.core;
 
 
+import com.core.advice.ApiTimeLogAspect;
 import io.ebean.EbeanServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ import java.lang.invoke.MethodHandles;
 @SpringBootApplication
 @EnableScheduling
 @EnableWebMvc
+@ApiTimeLogAspect
 public class Application implements WebMvcConfigurer {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
