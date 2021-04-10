@@ -1,4 +1,4 @@
-package com.core.controller;
+package com.core.DemoCode;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
