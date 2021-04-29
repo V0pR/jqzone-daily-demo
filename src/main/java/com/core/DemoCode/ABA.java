@@ -1,6 +1,9 @@
 package com.core.DemoCode;
 
 import java.beans.IntrospectionException;
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ABA {
@@ -18,7 +21,11 @@ public class ABA {
         System.err.println(a);
         System.out.println(b);
         System.out.println(c);
-//        atomicInteger.getAndIncrement()
+
+        Object o = new Object();
+
+        SoftReference<Object> ob = new SoftReference<Object>(o);
+        WeakReference<Object> objectWeakReference = new WeakReference<>(o);
 
     }
 }
