@@ -28,6 +28,10 @@ spring:
   hymeleaf:
     mode: html
     cache: false
+  redis:
+    host: 47.114.52.113
+    password: heimaleyou
+    database: 6
 
 #  http:
 #    encoding:

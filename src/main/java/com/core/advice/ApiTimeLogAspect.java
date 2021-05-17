@@ -1,7 +1,7 @@
 package com.core.advice;
 
 
-import com.core.controller.ApiTimeLog;
+import com.core.DemoCode.ApiTimeLog;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;
