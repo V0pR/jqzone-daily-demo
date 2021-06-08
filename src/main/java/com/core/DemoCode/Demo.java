@@ -6,6 +6,7 @@ import com.core.utils.DesensitizationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.thymeleaf.util.MapUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -69,13 +70,19 @@ public class Demo {
 //        Integer a =null;
 //        Integer b =2255;
 //        System.err.println(Objects.equals(a,b));
-        System.err.println(DesensitizationUtils.mobilePhone("17326021050"));
-        System.err.println(DesensitizationUtils.address("新湖·香格里拉1-3-2101"));
-        System.err.println(DesensitizationUtils.bankCard("6228480468633324370"));
-        System.err.println(DesensitizationUtils.email("wangjq.email@qq.com"));
-        System.err.println(DesensitizationUtils.fixedPhone("0832-98988"));
-        System.err.println(DesensitizationUtils.idCardNum("511023199410015456"));
-        System.err.println(DesensitizationUtils.userName("王建强"));
+//        System.err.println(DesensitizationUtils.mobilePhone("173202012312"));
+//        System.err.println(DesensitizationUtils.address("新湖·香格里拉1-3-2101"));
+//
+//        System.err.println(DesensitizationUtils.fixedPhone("123"));
+//
+//        System.err.println(DesensitizationUtils.userName("王建强"));
+
+        try {
+            BigDecimal a =new BigDecimal(1);
+            System.err.println(a.divide(BigDecimal.ZERO));
+        }catch (Exception e){
+            System.err.println(String.format("QuoteId: %s",e.getMessage()));
+        }
 
     }
 }

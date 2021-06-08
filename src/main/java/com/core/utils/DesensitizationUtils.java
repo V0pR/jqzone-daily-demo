@@ -22,13 +22,12 @@ public class DesensitizationUtils {
      */
     public static String mobilePhone(String mobileNum) {
         if (StringUtils.isBlank(mobileNum)) {
-            return null;
-        }
-        if (StringUtils.length(mobileNum) <= 7) {
             return mobileNum;
         }
-
-        return StringUtils.left(mobileNum, 3).concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(mobileNum, 4), StringUtils.length(mobileNum), "*"), "***"));
+        if (StringUtils.length(mobileNum) < 11) {
+            return mobileNum;
+        }
+        return StringUtils.left(mobileNum, 3).concat("****").concat(StringUtils.right(mobileNum, 4));
     }
 
     /**
@@ -39,7 +38,7 @@ public class DesensitizationUtils {
      */
     public static String fixedPhone(String fixedPhoneNum) {
         if (StringUtils.isBlank(fixedPhoneNum)) {
-            return null;
+            return fixedPhoneNum;
         }
         return StringUtils.leftPad(StringUtils.right(fixedPhoneNum, 4), StringUtils.length(fixedPhoneNum), "*");
     }
@@ -54,25 +53,10 @@ public class DesensitizationUtils {
      */
     public static String userName(String fullName) {
         if (StringUtils.isBlank(fullName)) {
-            return null;
+            return fullName;
         }
         String name = StringUtils.left(fullName, 1);
         return StringUtils.rightPad(name, StringUtils.length(fullName), "*");
-    }
-
-
-    /**
-     * 身份证脱敏
-     *
-     * @param idCardNum
-     * @return
-     */
-    public static String idCardNum(String idCardNum) {
-        if (StringUtils.isBlank(idCardNum)) {
-            return null;
-        }
-        String num = StringUtils.right(idCardNum, 4);
-        return StringUtils.leftPad(num, StringUtils.length(idCardNum), "*");
     }
 
     /**
@@ -86,35 +70,5 @@ public class DesensitizationUtils {
             return null;
         }
         return address.replaceAll("[0-9a-zA-Z]", "*");
-    }
-
-    /**
-     * email 脱敏
-     *
-     * @param email
-     * @return
-     */
-    public static String email(String email) {
-        if (StringUtils.isBlank(email)) {
-            return null;
-        }
-        int index = StringUtils.indexOf(email, "@");
-        if (index <= 1) {
-            return email;
-        }
-        return StringUtils.rightPad(StringUtils.left(email, 1), index, "*").concat(StringUtils.mid(email, index, StringUtils.length(email)));
-    }
-
-    /**
-     * 银行卡号脱敏
-     *
-     * @param cardNum
-     * @return
-     */
-    public static String bankCard(String cardNum) {
-        if (StringUtils.isBlank(cardNum)) {
-            return null;
-        }
-        return StringUtils.left(cardNum, 6).concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(cardNum, 4), StringUtils.length(cardNum), "*"), "******"));
     }
 }
