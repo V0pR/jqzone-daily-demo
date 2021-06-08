@@ -77,11 +77,16 @@ public class Demo {
 //
 //        System.err.println(DesensitizationUtils.userName("王建强"));
 
-        try {
-            BigDecimal a =new BigDecimal(1);
-            System.err.println(a.divide(BigDecimal.ZERO));
-        }catch (Exception e){
-            System.err.println(String.format("QuoteId: %s",e.getMessage()));
+//        try {
+//            BigDecimal a =new BigDecimal(1);
+//            System.err.println(a.divide(BigDecimal.ZERO));
+//        }catch (Exception e){
+//            System.err.println(String.format("QuoteId: %s",e.getMessage()));
+//        }
+        BigDecimal a = null;
+
+        if (Objects.isNull(a)  ||  a.setScale(2).compareTo(BigDecimal.ZERO) == 0){
+            System.err.println(111);
         }
 
     }
