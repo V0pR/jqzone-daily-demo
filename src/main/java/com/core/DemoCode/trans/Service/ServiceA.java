@@ -15,8 +15,8 @@ public class ServiceA {
     @Autowired
     ServiceB serviceB;
 
-//    @Transactional(rollbackFor = Exception.class)
-    public void service1(int a){
+    //@Transactional(rollbackFor = Exception.class)
+    public void service1A(int a){
         System.err.println("im"+this.getClass());
         serviceB.service2( a);
 

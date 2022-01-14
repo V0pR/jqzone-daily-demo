@@ -9,16 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class Demo {
 
-    @Autowired
+
     ServiceA serviceA;
-    @Autowired
+
     ServiceB serviceB;
+
 
     public void demo() {
         int a=1;
-        serviceA.service1(a);
+        serviceA.service1A(a);
         System.err.println(a);
     }
-
-
 }

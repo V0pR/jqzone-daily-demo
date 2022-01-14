@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("serviceB")
 public class ServiceB {
+
     @Transactional(rollbackFor = Exception.class)
     public void service2(int a){
         System.err.println("im"+this.getClass());

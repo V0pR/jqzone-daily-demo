@@ -2,6 +2,7 @@ package com.core.DemoCode;
 
 import com.core.domain.A;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,8 +14,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author v0pr
@@ -125,41 +131,59 @@ public class Demo {
 //        list.stream().forEach(project -> joiner.add(project.getAge()));
 //        System.err.println(joiner.toString());
 
+        //
+        //List<Long> list = Arrays.asList(289686L,
+        //        280712L,
+        //        275868L,
+        //        274200L,
+        //        274120L,
+        //        274098L,
+        //        273160L,
+        //        272398L,
+        //        272292L,
+        //        269265L,
+        //        267650L,
+        //        267418L,
+        //        267231L,
+        //        264597L,
+        //        263533L,
+        //        258921L,
+        //        257548L,
+        //        254333L,
+        //        242851L,
+        //        217516L);
+        //Map<Long, Long> map = Maps.newHashMap();
+        //map.put(289686L,2645L);
+        //map.put(280712L,0L);
+        //map.put(275868L,2645L);
+        //map.put(274200L,4600L);
+        //map.put(274120L,4600L);
+        //map.put(274098L,3450L);
+        //map.put(273160L,3910L);
+        //map.put(272398L,21160L);
+        //map.put(272292L,4255L);
+        //map.put(269265L,3680L);
+        //map.put(267650L,4945L);
+        //map.put(267418L,2760L);
+        //map.put(267231L,3450L);
+        //map.put(264597L,4370L);
+        //map.put(263533L,0L);
+        //map.put(258921L,4830L);
+        //map.put(257548L,3220L);
+        //map.put(254333L,0L);
+        //map.put(242851L,0L);
+        //map.put(217516L,3450L);
+        //for (Long id : list) {
+        //    Long aLong = map.get(id);
+        //    if (Objects.isNull(aLong)) {
+        //        System.err.println("error:" + id);
+        //        return;
+        //    }
+        //    String sql = "UPDATE `mj_cost_control` SET `actual_amount` =" + aLong + ", `coupon_change_amount` =" + aLong + " WHERE `project_id` ="+id+" AND `category_id` = 1000001612;";
+        //    System.err.println(sql);
+        //}
+        //System.err.println("-- 软装内控设置为0");
 
-
-
-//        List<Integer> list = Arrays.asList(1,
-//                2,
-//                3,
-//                66,
-//                70,
-//                71,
-//                109,
-//                110,
-//                114,
-//                1662,
-//                1891,
-//                1898,
-//                1899,
-//                1974,
-//                1987,
-//                2047,
-//                2048,
-//                2119,
-//                2148,
-//                2471,
-//                2583,
-//                2647,
-//                2785,
-//                2942,
-//                3039,
-//                3084,
-//                3090,
-//                3093);
-//        for (Integer integer : list) {
-//            String sql = "(1000003, " + integer + ", 1, 'SETTLEMENT_PROJECT_MANAGER_SATISFACTION_PUNISHMENT_AUTO_CONFIRM', 'ON', '分公司-项目经理满意度处罚自动勾选配置', 1, now(), now(), 'wjq', 'wjq', 0),";
-//            System.err.println(sql);
-//        }
 
 
 //        System.err.println(new BigDecimal(122417.4800).multiply(new BigDecimal(0.005))
@@ -181,7 +205,6 @@ public class Demo {
 //        System.err.println(from.getTime());
 
 
-
 //        BigDecimal bigDecimal = new BigDecimal(2020.2000);
 //        BigDecimal bigDecimal1 = new BigDecimal(2020.2000);
 //        if (bigDecimal.compareTo(bigDecimal1) <= 0) {
@@ -191,14 +214,23 @@ public class Demo {
 //        String aa ="$!{";
 //        String replace = aa.replace("$!{", "$!{");
 //        System.err.println(replace);
-
-        LocalDateTime localDateTime = LocalDateTime.of(2021, 8, 31, 23, 59, 59);
-
-        LocalDateTime day = localDateTime.with(LocalTime.MAX);
-        Date from = Date.from(day.atZone(ZoneId.systemDefault()).toInstant());
-//        System.err.println();
-        System.err.println(from);
-        System.err.println(from.after(new Date()));
+//
+//        LocalDateTime localDateTime = LocalDateTime.of(2021, 8, 31, 23, 59, 59);
+//
+//        LocalDateTime day = localDateTime.with(LocalTime.MAX);
+//        Date from = Date.from(day.atZone(ZoneId.systemDefault()).toInstant());
+////        System.err.println();
+//        System.err.println(from);
+//        System.err.println(from.after(new Date()));
+        double exp = Math.exp(300);
+        System.err.println(exp);
+        int a = (int) exp;
+        System.err.println(a);
+        int max = Math.max(Math.min(a, 1), 24 * 60);
+        System.err.println(max);
+        int periodMinutes = max;
+        System.err.println(periodMinutes);
+        System.err.println( new Date(System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(periodMinutes, TimeUnit.MINUTES)));
     }
 
 }
