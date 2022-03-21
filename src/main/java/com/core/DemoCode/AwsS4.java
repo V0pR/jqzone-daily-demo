@@ -128,7 +128,7 @@ public class AwsS4 {
             String filePath = "https://esignoss.esign.cn/1111563786/08cdd670-cc21-4efe-a50a-50efcb9ea4c5/%E5%B7%A5%E7%A8%8B%E5%90%88%E5%90%8C.pdf?Expires=1647593244&OSSAccessKeyId=LTAI4G23YViiKnxTC28ygQzF&Signature=gucYjKvoSe83IS5JEe1qfiVdhPI%3D";
             InputStream inputStream = new URL(filePath).openStream();
             //File file1 = new File("/Users/qqjqq/Downloads/7972_20220224102930_4560.pdf");
-            //InputStream inputStream = new FileInputStream(file1);
+            //InputStream i nputStream = new FileInputStream(file1);
             //这里可以指定文件名称上传
             int available = inputStream.available();
             System.err.println("我是预估长度:" + available);
