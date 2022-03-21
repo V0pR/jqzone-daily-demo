@@ -1,33 +1,21 @@
 package com.core.DemoCode;
 
-import com.core.domain.A;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.common.collect.Maps;
-import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 
-import java.math.BigDecimal;
+import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
+import java.util.StringJoiner;
 
 /**
  * @author v0pr
  */
 public class Demo {
 
-    public static void main(String[] args) throws JsonProcessingException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException {
 //
 //        List<String> list = new ArrayList<>();
 //        list.add("a");
@@ -222,15 +210,51 @@ public class Demo {
 ////        System.err.println();
 //        System.err.println(from);
 //        System.err.println(from.after(new Date()));
-        double exp = Math.exp(300);
-        System.err.println(exp);
-        int a = (int) exp;
-        System.err.println(a);
-        int max = Math.max(Math.min(a, 1), 24 * 60);
-        System.err.println(max);
-        int periodMinutes = max;
-        System.err.println(periodMinutes);
-        System.err.println( new Date(System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(periodMinutes, TimeUnit.MINUTES)));
+//        double exp = Math.exp(300);
+//        System.err.println(exp);
+//        int a = (int) exp;
+//        System.err.println(a);
+//        int max = Math.max(Math.min(a, 1), 24 * 60);
+//        System.err.println(max);
+//        int periodMinutes = max;
+//        System.err.println(periodMinutes);
+//        System.err.println( new Date(System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(periodMinutes, TimeUnit.MINUTES)));
+
+        //String m_fit ="m_fit";
+        //String m_fill = "m_fill";
+        //
+        ArrayList<String> values = Lists.newArrayList("w_160,h_160",
+                "w_524",
+                "w_132,h_132",
+                "h_300",
+                "w_400,h_400",
+                "w_186,h_186",
+                "w_690,h_390",
+                "w_84,h_84",
+                "w_80,h_80",
+                "w_110,h_110",
+                "w_690",
+                "w_750",
+                "w_375"
+        );
+        //
+        //for (String value : values) {
+        //    System.err.println(m_fit+","+value);
+        //}
+        //File file1 = new File("/Users/qqjqq/Downloads/grafana_data_export.csv");
+        //InputStream inputStream = new FileInputStream(file1);
+        //System.err.println(file1.getName());
+        //String mimeType = URLConnection.guessContentTypeFromName(file1.getName());
+        //System.err.println(mimeType);
+        //StringJoiner joiner = new StringJoiner("、 ");
+        //values.forEach(s->joiner.add(s));
+        //System.err.println("投诉"+joiner);
+
+        String a ="{noticeListenerName=beKeComplaintService, amqp_receivedDeliveryMode=PERSISTENT, outBizId=179, amqp_receivedExchange=engine, amqp_deliveryTag=2, Pinpoint-Sampled=1, bizCode=BE_KE, amqp_consumerQueue=engine.be_ke_complaint_input, amqp_redelivered=false, bizTime=1647496146433, amqp_receivedRoutingKey=engine, companyId=1000002, branchCompanyId=72, tag=PROJECT_COMPLAINT_SYNC_BE_KE, id=c1457810-7ced-cc2d-1baa-1e540152c2ce, amqp_consumerTag=amq.ctag-U5f2dpjOkT5U8u062Omb5A, contentType=application/x-java-object;type=java.util.HashMap, timestamp=1647496151450}";
+        Map map = JSONObject.parseObject(a, Map.class);
+        System.err.println(map);
+
+
     }
 
 }

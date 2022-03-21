@@ -7,9 +7,7 @@ import com.amazonaws.HttpMethod;
 import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -19,20 +17,22 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 /**
@@ -41,28 +41,50 @@ import java.net.URL;
  * @Description:
  */
 public class AwsS4 {
+    /**
+     * accessKey – AWS 访问密钥。
+     * secretKey – AWS 秘密访问密钥
+     */
     private static String accessKeyId = "55DIWBJB0X4U249D8DD0";
     private static String secretKeyId = "52NLJIBoVrGtC25xpIeREclO25pXIdjGEYtM83vT";
-    private static String bucketName = "/zqt-data-prod";
-    private static String objectKey = "/test/upload-test.zip";
-    private static String serviceEndpoint = "https://ods.lianjia.com";
-    public static void main(String[] args) {
-          generatePreSignedUrl();
-          //UploadObject(null);
+    /**
+     * bucket
+     */
+    private static String bucketName = "/zqt-data-daily";
+
+    /**
+     * 对象存储路径? 因为直接拼在bucket目录后面
+     */
+    private static String objectKey = "/test/20220318-001.pdf";
+    /**
+     * 服务端点
+     */
+    private static String serviceEndpoint = "https://storage.lianjia.com";
+
+    public static void main(String[] args) throws IOException {
+        //generatePreSignedUrl();
+        //generatePreSignedUrl2();
+        uploadObject(null);
+        //getObject();
     }
 
     /**
      * 生成预签名
+     *
      * @return
      */
-    public static URL generatePreSignedUrl() {
+    public static void generatePreSignedUrl() {
         try {
-            AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(serviceEndpoint,"cn-north-1");
+
+            AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(serviceEndpoint, "ap-beijing");
             BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKeyId, secretKeyId);
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                     .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
                     .withEndpointConfiguration(endpointConfiguration)
+                    .withPathStyleAccessEnabled(true)
+                    .disableChunkedEncoding()
                     .build();
+
             // 签名有效时间
             java.util.Date expiration = new java.util.Date();
             long expTimeMillis = expiration.getTime();
@@ -74,30 +96,28 @@ public class AwsS4 {
                     .withMethod(HttpMethod.PUT)
                     .withExpiration(expiration);
             URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+            System.err.println("预签名URL：" + url.toString());
 
-            System.err.println("预签名URL："+url.toString());
-            return url;
         } catch (AmazonServiceException e) {
-            // 调用已成功传输，但 Amazon S3 无法处理,所以它返回了一个错误响应
             e.printStackTrace();
         } catch (SdkClientException e) {
-            // 无法联系 Amazon S3 以获取响应或客户端，无法解析来自 Amazon S3 的响应
             e.printStackTrace();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 
     /**
      * 文件上传
+     *
      * @param file
      * @return
      * @throws IOException
      */
-    public static void UploadObject(@RequestParam("file") MultipartFile file){
-        AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(serviceEndpoint,"cn-north-1");
+    public static void uploadObject(@RequestParam("file") MultipartFile file) {
+        //signingRegion 没有实际意义，强迫症可填写成：
+        AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(serviceEndpoint, "ap-beijing");
         try {
             BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKeyId, secretKeyId);
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
@@ -105,24 +125,48 @@ public class AwsS4 {
                     .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
                     .withEndpointConfiguration(endpointConfiguration)
                     .build();
+            String filePath = "https://esignoss.esign.cn/1111563786/08cdd670-cc21-4efe-a50a-50efcb9ea4c5/%E5%B7%A5%E7%A8%8B%E5%90%88%E5%90%8C.pdf?Expires=1647593244&OSSAccessKeyId=LTAI4G23YViiKnxTC28ygQzF&Signature=gucYjKvoSe83IS5JEe1qfiVdhPI%3D";
+            InputStream inputStream = new URL(filePath).openStream();
+            //File file1 = new File("/Users/qqjqq/Downloads/7972_20220224102930_4560.pdf");
+            //InputStream inputStream = new FileInputStream(file1);
             //这里可以指定文件名称上传
-            PutObjectRequest request = new PutObjectRequest(bucketName, objectKey, new File("/Users/qqjqq/Downloads/WX20211227-110836.png"));
-            //ObjectMetadata metadata = new ObjectMetadata();
-            //metadata.setContentType("application/octet-stream");//文件的content-type
-            //metadata.addUserMetadata("title", "someTitle");
+            int available = inputStream.available();
+            System.err.println("我是预估长度:" + available);
+            ObjectMetadata metadata = new ObjectMetadata();
+            //metadata.setContentLength(Long.valueOf(inputStream.available()));
+            metadata.setContentType("application/pdf");
+
+            //PutObjectRequest request = new PutObjectRequest(bucketName,"/test/"+"1"+file1.getName(), file1);
+            //PutObjectResult putObjectResult = s3Client.putObject();
             //request.setMetadata(metadata);
-            PutObjectResult putObjectResult = s3Client.putObject(request);
+            //PutObjectRequest request = new PutObjectRequest(bucketName, objectKey, inputStream, metadata);
+            PutObjectResult putObjectResult = s3Client.putObject(bucketName, "/test/20220318-007.pdf", inputStream, metadata);
+            System.err.println("upload request");
+            //System.err.println(JSONObject.toJSONString(request));
+            System.err.println("upload success");
             System.err.println(JSONObject.toJSONString(putObjectResult));
         } catch (AmazonServiceException e) {
-            // The call was transmitted successfully, but Amazon S3 couldn't process
-            // it, so it returned an error response.
             e.printStackTrace();
         } catch (SdkClientException e) {
-            // Amazon S3 couldn't be contacted for a response, or the client
-            // couldn't parse the response from Amazon S3.
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public static void getObject() throws IOException {
+        AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(serviceEndpoint, "ap-beijing");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKeyId, secretKeyId);
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+                .withPathStyleAccessEnabled(true)
+                .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
+                .withEndpointConfiguration(endpointConfiguration)
+                .build();
+        S3Object object = s3Client.getObject(bucketName, objectKey);
+        InputStream inputStream = object.getObjectContent();
+        FileUtils.copyInputStreamToFile(inputStream, new File("/Users/qqjqq/Downloads/aaaa11wwwww1154574154.pdf"));
+    }
 
 }

@@ -18,7 +18,7 @@ import java.sql.SQLException;
  * @Description: DataSourceConfig
  * @date 2020-01-09 16:57:07
  */
-@Configuration
+//@Configuration
 public class DataSourceConfig {
 
     //
