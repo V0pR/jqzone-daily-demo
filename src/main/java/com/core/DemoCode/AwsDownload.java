@@ -24,8 +24,8 @@ import java.util.Calendar;
  */
 public class AwsDownload {
 
-    private static String accessKeyId = "55DIWBJB0X4U249D8DD0";
-    private static String secretKeyId = "52NLJIBoVrGtC25xpIeREclO25pXIdjGEYtM83vT";
+    private static String accessKeyId = "111";
+    private static String secretKeyId = "222";
     private static String bucketName = "/zqt-data-daily";
     private static String objectKey = "/test/20220217.pdf";
     private static String serviceEndpoint = "https://ods.lianjia.com";

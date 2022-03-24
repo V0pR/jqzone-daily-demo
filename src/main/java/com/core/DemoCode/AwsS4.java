@@ -45,8 +45,8 @@ public class AwsS4 {
      * accessKey – AWS 访问密钥。
      * secretKey – AWS 秘密访问密钥
      */
-    private static String accessKeyId = "55DIWBJB0X4U249D8DD0";
-    private static String secretKeyId = "52NLJIBoVrGtC25xpIeREclO25pXIdjGEYtM83vT";
+    private static String accessKeyId = "111";
+    private static String secretKeyId = "222";
     /**
      * bucket
      */
