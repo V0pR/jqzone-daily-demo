@@ -1,14 +1,19 @@
 package com.core.DemoCode;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPObject;
 import com.google.common.collect.Lists;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.springframework.util.Assert;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 
 /**
  * @author v0pr
@@ -250,10 +255,54 @@ public class Demo {
         //values.forEach(s->joiner.add(s));
         //System.err.println("投诉"+joiner);
 
-        String a ="{noticeListenerName=beKeComplaintService, amqp_receivedDeliveryMode=PERSISTENT, outBizId=179, amqp_receivedExchange=engine, amqp_deliveryTag=2, Pinpoint-Sampled=1, bizCode=BE_KE, amqp_consumerQueue=engine.be_ke_complaint_input, amqp_redelivered=false, bizTime=1647496146433, amqp_receivedRoutingKey=engine, companyId=1000002, branchCompanyId=72, tag=PROJECT_COMPLAINT_SYNC_BE_KE, id=c1457810-7ced-cc2d-1baa-1e540152c2ce, amqp_consumerTag=amq.ctag-U5f2dpjOkT5U8u062Omb5A, contentType=application/x-java-object;type=java.util.HashMap, timestamp=1647496151450}";
-        Map map = JSONObject.parseObject(a, Map.class);
-        System.err.println(map);
+        Object  object="{\"code\":2000,\"data\":{\"saveUploadAgreement\":false,\"handler\":\"1000000029378992\",\"signAddress\":\"伟星·凤凰城中岛玫瑰苑G\",\"payProve\":\"\",\"planSolverName\":\"\",\"doorSummary\":\"\",\"handlerName\":\"张舒雅\",\"tagNameList\":[],\"ticketLevelName\":\"装修咨询/退款/赔付类问题/退款/定金\",\"associatesName\":\"\",\"sourceRole\":1,\"doorFlagDesc\":\"否\",\"ticketSourceName\":\"系统对接/装企通系统\",\"enclosure\":\"\",\"followStageContentList\":[],\"ticketSourceOne\":\"system_docking\",\"id\":5357,\"projectOrderVariableDTO\":{\"brandName\":\"圣都\",\"address\":\"伟星·凤凰城中岛玫瑰苑G\",\"areaName\":\"合肥区域\",\"projectManagerName\":\"\",\"homeownerName\":\"方姐\",\"statusDes\":\"待开工\",\"storeName\":\"芜湖店\",\"projectId\":\"XM20220603402149\",\"designerName\":\"储绍鹏\"},\"doorFlag\":\"0\",\"toGroundDesc\":\"\",\"ticketLevel\":\"34847\",\"saveAgreement\":false,\"createByPhone\":\"18705533383\",\"stageContentList\":[],\"firstTicketLevel\":\"34323\",\"doorEvidence\":\"\",\"ticketSource\":\"system_docking,ZQTXT\",\"buttonList\":[\"FOLLOW\",\"BROADCAST\",\"RE_SELECT_PLAN\",\"SKIP_AGREEMENT\",\"UPLOAD_AGREEMENT\"],\"handlerCode\":\"29378992\",\"planSolver\":\"\",\"subStatus\":\"COMPLETE\",\"customerName\":\"方姐\",\"savePlan\":true,\"agreementPlanType\":\"NO_CRR\",\"sourceType\":\"SYSTEM_HOLY_CAPITAL\",\"brandId\":5,\"doorTime\":\"1970-01-01 00:00:00\",\"projectId\":\"XM20220603402149\",\"broadcastStageContentList\":[],\"status\":\"COMPLETE\",\"toGroundEvidence\":\"\",\"gmtModified\":\"2022-07-08T09:10:09\",\"complainLevelDesc\":\"缺省\",\"completePlanDesc\":\"不涉及整改、维修、赔付\",\"remark\":\"\",\"projectStatusDesc\":\"待开工\",\"planImageUrl\":\"\",\"customerPhone\":\"18705533383\",\"signHomeownerName\":\"方姐\",\"projectOrderDTO\":{\"brandName\":\"圣都\",\"address\":\"伟星·凤凰城中岛玫瑰苑G\",\"projectManagerName\":\"\",\"projectType\":3,\"designerName\":\"储绍鹏\",\"areaCode\":\"BJ_2_1117120\",\"areaName\":\"合肥区域\",\"brandId\":5,\"statusDes\":\"待开工\",\"storeName\":\"芜湖店\",\"homeownerName\":\"方姐\",\"projectId\":\"XM20220603402149\",\"storeCode\":\"BJ_10_1117130\"},\"completeEvidence\":\"\",\"sinanTicketId\":\"\",\"completeDesc\":\"\",\"statusDesc\":\"完结\",\"complainAgreementAuditRecord\":[],\"associates\":\"\",\"firstTicketLevelName\":\"装修投诉\",\"associatesRole\":\"\",\"problemDesc\":\"重复工单\",\"gmtCreate\":\"2022-07-06T19:53:37\",\"ticketTheme\":\"\",\"tagList\":[],\"projectStatus\":0,\"createBy\":\"84766\",\"sdProject\":true,\"complainTicketAuditRecordList\":[{\"nodeName\":\"完结\",\"handler\":\"1000000029378992\",\"complainTicketId\":5357,\"gmtModified\":\"2022-07-08 09:10:09\",\"handlerName\":\"张舒雅\",\"remark\":\"\",\"id\":37344,\"nodeType\":\"COMPLETE\",\"gmtCreate\":\"2022-07-08 09:10:10\",\"handlerCode\":\"29378992\"},{\"nodeName\":\"方案提交\",\"handler\":\"1000000029378992\",\"complainTicketId\":5357,\"gmtModified\":\"2022-07-08 09:06:25\",\"handlerName\":\"张舒雅\",\"remark\":\"\",\"id\":37341,\"nodeType\":\"SUBMIT_PLAN\",\"gmtCreate\":\"2022-07-08 09:06:26\",\"handlerCode\":\"29378992\"},{\"nodeName\":\"方案选择\",\"handler\":\"1000000029378992\",\"complainTicketId\":5357,\"gmtModified\":\"2022-07-08 09:06:07\",\"handlerName\":\"张舒雅\",\"remark\":\"不涉及整改、维修、赔付\",\"id\":37339,\"nodeType\":\"OPTIONS\",\"gmtCreate\":\"2022-07-08 09:06:07\",\"handlerCode\":\"29378992\"},{\"nodeName\":\"初步跟进\",\"handler\":\"1000000029378992\",\"complainTicketId\":5357,\"gmtModified\":\"2022-07-08 09:06:00\",\"handlerName\":\"张舒雅\",\"remark\":\"\",\"id\":37338,\"nodeType\":\"FOLLOW_UP\",\"gmtCreate\":\"2022-07-08 09:06:01\",\"handlerCode\":\"29378992\"},{\"nodeName\":\"响应\",\"handler\":\"1000000029378992\",\"complainTicketId\":5357,\"gmtModified\":\"2022-07-06 22:33:01\",\"handlerName\":\"张舒雅\",\"remark\":\"客诉专员：张舒雅29378992\",\"id\":36855,\"nodeType\":\"RESPONSE\",\"gmtCreate\":\"2022-07-06 22:33:02\",\"handlerCode\":\"29378992\"},{\"nodeName\":\"工单生成\",\"handler\":\"84766\",\"complainTicketId\":5357,\"gmtModified\":\"2022-07-06 19:53:37\",\"handlerName\":\"方姐\",\"remark\":\"\",\"id\":36804,\"nodeType\":\"GENERATE\",\"gmtCreate\":\"2022-07-06 19:53:37\",\"handlerCode\":\"84766\"}],\"ticketDescription\":\"在芜湖交了3000元以现金，业务员小杜告知一周可退，线上申请，还未到账，已解释线上退定未打通，要求尽快核实退款进度\",\"completeExplain\":\"重复工单，业主已收到退款金额\",\"reasonCategory\":\"服务承诺(被窝)/退定金/要求退定金/未收到款项\",\"hasAgreement\":false,\"complainLevel\":\"DEFAULT\",\"complainSolvePlanDTO\":{\"complainTicketId\":5357,\"createBy\":\"1000000029378992\",\"gmtModified\":\"2022-07-08 09:06:25\",\"planDesc\":\"已给客户安排退款\",\"ownerName\":\"\",\"complainSolvePlanAuditRecordDTOList\":[{\"nodeName\":\"提交方案\",\"handler\":\"1000000029378992\",\"gmtModified\":\"2022-07-08 09:06:25\",\"handlerName\":\"张舒雅\",\"remark\":\"\",\"id\":3074,\"complainSolvePlanId\":3289,\"nodeType\":1007,\"gmtCreate\":\"2022-07-08 09:06:26\"}],\"remark\":\"\",\"id\":3289,\"ownerId\":\"\",\"gmtCreate\":\"2022-07-08 09:06:26\",\"compensateAmount\":0}},\"success\":true,\"message\":\"操作成功\"}";
 
+//        System.err.println(JSONObject.toJSONString(object,String));
+//        System.err.println(JSONObject.parseObject(object.toString()).getJSONObject("data").getString("id"));
+
+//        System.err.println(new Date().getTime());
+
+
+//        System.err.println(DateForamt.builder().now(new Date()).build().getNow());
+
+
+//        System.err.println(BigDecimal.ZERO.compareTo(new BigDecimal(-190.46)));
+//        ArrayList<Stri    BranchCompanyControllerng> confList = Lists.newArrayList("REWARD_ACTIVATION_RULE","REWARD_ACTIVATION_TIME");
+//        Assert.isTrue(confList.contains(BranchCompanyConfService.REWARD_ACTIVATION_APPEND), "结算奖惩特殊规则未配置，请先配置后再进行结算");
+//        Assert.isTrue(confList.contains(BranchCompanyConfService.REWARD_ACTIVATION_RULE), "结算奖惩规则未配置，请先配置后再进行结算");
+//        Assert.isTrue(confList.contains(BranchCompanyConfService.REWARD_ACTIVATION_TIME), "结算奖惩激活时间未配置，请先配置后再进行结算");
+//        if (Objects.nonNull(object)){
+//            return;
+//        }
+//        System.err.println(1111);
+//        String s1 ="2";
+//
+//        if ((s1.equals("1") || s1.equals("2"))){
+//            System.err.println(11111);
+//            return;
+//        }
+//        System.err.println(22222);
+        String date = DateFormatUtils.format(new Date(), "yyyyMMdd");
+        String signature = DigestUtils.sha1Hex(String.format("%s,%s,%s", "zqt-report", "af44f18c41394cfdab5d3537b3181d12", date));
+        System.err.println(signature);
+
+
+        String s ="{\"code\":2000,\"message\":\"操作成功\",\"data\":{\"scheduleReward\":{\"amount\":77.54,\"reason\":\"鸾鸟1-1-1项目按期竣工,水电节点按时验收,泥木节点未按时验收,油漆节点按时验收,满意度评价6星\"},\"nodeReward\":[{\"type\":\"WATER_ELECTRICIAN\",\"amount\":22.15,\"reason\":\"鸾鸟1-1-1水电节点按时验收，奖励\"},{\"type\":\"WOOD_MUD\",\"amount\":0,\"reason\":\"鸾鸟1-1-1泥木节点未按时验收\"},{\"type\":\"PAINT\",\"amount\":44.30,\"reason\":\"鸾鸟1-1-1油漆节点按时验收，奖励\"}],\"satisfactionReward\":null,\"ruleSwitchReward\":null,\"rule\":\"C_ASSESSMENT_SATISFACTION\",\"sdProjectOrderId\":156864,\"satisfactionScore\":12.00},\"success\":true}";
+        JSONObject responseJson = JSON.parseObject(s);
+        JSONObject data = responseJson.getJSONObject("data");
+        JSONArray nodeRewardArray = data.getJSONArray("nodeReward");
+
+        if (Objects.nonNull(nodeRewardArray) && CollectionUtils.isNotEmpty(nodeRewardArray)) {
+            nodeRewardArray.forEach(nodeReward -> {
+                JSONObject nodeRewardJson = JSON.parseObject(JSON.toJSONString(nodeReward));
+                String reason = nodeRewardJson.getString("reason");
+                BigDecimal amount = nodeRewardJson.getBigDecimal("amount");
+                String type = nodeRewardJson.getString("type");
+                System.err.println(reason);
+                System.err.println(amount);
+                System.err.println(type);
+            });
+        }
 
     }
 

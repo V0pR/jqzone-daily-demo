@@ -50,21 +50,21 @@ public class AwsS4 {
     /**
      * bucket
      */
-    private static String bucketName = "/zqt-data-daily";
+    private static String bucketName = "/zqt-data-prod";
 
     /**
      * 对象存储路径? 因为直接拼在bucket目录后面
      */
-    private static String objectKey = "/test/20220318-001.pdf";
+    private static String objectKey = "/saas-img/keLogo.png";
     /**
      * 服务端点
      */
-    private static String serviceEndpoint = "https://storage.lianjia.com";
+    private static String serviceEndpoint = "https://ods.lianjia.com";
 
     public static void main(String[] args) throws IOException {
-        //generatePreSignedUrl();
+        generatePreSignedUrl();
         //generatePreSignedUrl2();
-        uploadObject(null);
+//        uploadObject(null);
         //getObject();
     }
 
